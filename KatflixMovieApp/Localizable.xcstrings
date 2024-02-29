@@ -1,0 +1,102 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Amazing graphics" : {
+      "comment" : "OnboardingSlide3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрясающая графика"
+          }
+        }
+      }
+    },
+    "An exciting plot will take you into a fantasy world or help you experience all the variety of real storylines" : {
+      "comment" : "OnboardingSlide1",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Захватывающий сюжет перенесет Вас в мир фантазий или поможет прочувствовать всё разнообразие реальных сюжетных линий"
+          }
+        }
+      }
+    },
+    "Get Started" : {
+      "comment" : "Onboarding Button yo MainVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приступаем"
+          }
+        }
+      }
+    },
+    "Incredible emotions" : {
+      "comment" : "OnboardingSlide1",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невероятные эмоции"
+          }
+        }
+      }
+    },
+    "Next" : {
+      "comment" : "Onboarding Button to Slide",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Далее"
+          }
+        }
+      }
+    },
+    "Step into a world filled with picturesque illustrations or plunge into everyday life with qualitatively drawn locations and characters" : {
+      "comment" : "OnboardingSlide3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Окунитесь в мир, наполненный живописными иллюстрациями, или  в повседневную жизнь с качественно прорисованными локациями и персонажами"
+          }
+        }
+      }
+    },
+    "The combination of colorful images, high-quality sound will give you unique impressions" : {
+      "comment" : "OnboardingSlide2",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сочетание красочных изображений, качественного звука подарит Вам неповторимые впечатления"
+          }
+        }
+      }
+    },
+    "Unique impressions" : {
+      "comment" : "OnboardingSlide2",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уникальные впечатления"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
