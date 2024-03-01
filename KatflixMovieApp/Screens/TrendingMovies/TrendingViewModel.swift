@@ -8,10 +8,7 @@
 import Foundation
 import UIKit
 
-protocol TrendingViewModelDelegate: AnyObject {
-    func didFetchMovieDetails()
-}
-
 final class TrendingViewModel {
-   
+    
+
 }

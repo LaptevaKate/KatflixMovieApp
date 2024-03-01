@@ -11,11 +11,7 @@ class TrendingMoviesViewController: UIViewController {
     
     @IBOutlet weak var trendingTableView: UITableView!
     
-}
-extension TrendingMoviesViewController: TrendingViewModelDelegate {
-    func didFetchMovieDetails() {
-        
-        
-    }
+    private let trendingViewModel = TrendingViewModel()
     
 }
+

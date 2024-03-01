@@ -13,11 +13,12 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var slides: [OnboardingModel] = []
+    private let viewModel = OnboardingViewModel()
+    
     var currentPage = 0 {
         didSet {
             pageControl.currentPage = currentPage
-            if currentPage == slides.count - 1 {
+            if currentPage == viewModel.slides.count - 1 {
                 nextButton.setTitle(OnboardingSlidesLocalization.getStarted.string, for: .normal)
             } else {
                 nextButton.setTitle(OnboardingSlidesLocalization.nextButton.string, for: .normal)
@@ -30,12 +31,12 @@ class OnboardingViewController: UIViewController {
         createSlides()
         collectionView.delegate = self
         collectionView.dataSource = self
-        pageControl.numberOfPages = slides.count
-    
+        pageControl.numberOfPages = viewModel.slides.count
+        
     }
     
     func createSlides() {
-        slides =  [OnboardingModel(title: OnboardingSlidesLocalization.titleSlide1.string,
+        viewModel.slides =  [OnboardingModel(title: OnboardingSlidesLocalization.titleSlide1.string,
                                    description: OnboardingSlidesLocalization.descriptionSlide1.string,
                                    image: UIImage(named: "Slide1")),
                    OnboardingModel(title: OnboardingSlidesLocalization.titleSlide2.string,
@@ -47,10 +48,8 @@ class OnboardingViewController: UIViewController {
     }
     
     @IBAction func nextButtonDidTap(_ sender: UIButton) {
-        if currentPage == slides.count - 1 {
-            
-            let storyboard = UIStoryboard(name: "TrendingMoviesViewController", bundle: nil)
-            let controller = storyboard.instantiateViewController(identifier: "TrendingMoviesViewController") as! TrendingMoviesViewController
+        if currentPage == viewModel.slides.count - 1 {
+            let controller = TabBarViewController.createTabbar()
             controller.modalPresentationStyle = .fullScreen
             controller.modalTransitionStyle = .flipHorizontal
             UserDefaults.standard.hasOnboarded = true
@@ -65,11 +64,11 @@ class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return slides.count
+        return viewModel.slides.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as! OnboardingCollectionViewCell
-        cell.setup(slides[indexPath.row])
+        cell.setupCollectionViewCell(viewModel: viewModel.slides[indexPath.row])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

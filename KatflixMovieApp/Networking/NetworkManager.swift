@@ -30,12 +30,10 @@ class NetworkManager {
             if error != nil {
                 print(error.debugDescription)
             } else if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                
                 guard let data = data else {
                     completionHandler(.failure(.canNoteParseData))
                     return
                 }
-                
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
