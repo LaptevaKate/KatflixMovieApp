@@ -25,6 +25,6 @@ class DetailMoviesViewModel {
     }
     
     func didTapAddToFavorites() {
-       
+        
     }
 }

@@ -12,7 +12,7 @@ struct PopularMoviesModel: Codable, Hashable {
     let results: [MovieModel]
     let totalPages: Int
     let totalResults: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case page = "page"
         case results = "results"

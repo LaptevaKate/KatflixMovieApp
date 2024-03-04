@@ -48,6 +48,7 @@ extension TrendingMoviesViewController : UITableViewDelegate {
             let cell = self.trendingTableView.dequeueReusableCell(withIdentifier: "trendingCell", for: indexPath) as! TrendingMovieCustomCell
             cell.backgroundColor = .black
             cell.titleLabel.text = itemIdentifier.title
+            cell.releaseLabel.text = itemIdentifier.releaseDate
             cell.voteAverage.setTitle(" \(String(itemIdentifier.voteAverage!)) ", for: .normal)
             cell.getPosterFromURL(posterPath: itemIdentifier.posterPath!)
             

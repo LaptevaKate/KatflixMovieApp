@@ -11,7 +11,7 @@ import UIKit
 
 final class OnboardingViewModel {
     var slides: [OnboardingModel] = []
-   
+    
     func createSlides() {
         slides =  [OnboardingModel(title: OnboardingSlidesLocalization.titleSlide1.string,
                                    description: OnboardingSlidesLocalization.descriptionSlide1.string,

@@ -25,19 +25,22 @@ class DetailMoviesViewController: UIViewController {
     override func loadView() {
         view = movieDetailView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         movieDetailViewModel.delegate = self
         movieDetailView.delegate = self
         setViewProperties()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        
         movieDetailView.scrollView.contentSize.height = self.movieDetailView.titleName.bounds.height + self.movieDetailView.overview.bounds.height + self.movieDetailView.addToFavoritesButton.bounds.height + 80
     }
-
+    
     private func setViewProperties() {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
         movieDetailView.overview.text = movieDetailViewModel.movie.overview
@@ -49,7 +52,7 @@ class DetailMoviesViewController: UIViewController {
 
 extension DetailMoviesViewController: DetailMoviesDelegate {
     func updateDB() {
-//        
+        //        
     }
 }
 extension DetailMoviesViewController: MovieDetailViewDelegate {

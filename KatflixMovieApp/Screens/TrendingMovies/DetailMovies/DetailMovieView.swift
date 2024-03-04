@@ -26,7 +26,7 @@ class MovieDetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
+        backgroundColor = .black
         configLayout()
     }
     
@@ -63,7 +63,7 @@ class MovieDetailView: UIView {
             scrollView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-
+            
             titleName.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
             titleName.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 10),
             titleName.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -10),
@@ -80,14 +80,14 @@ class MovieDetailView: UIView {
             voteAverage.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 12),
             voteAverage.trailingAnchor.constraint(equalTo: releaseDate.leadingAnchor, constant: -10),
             
-            addToFavoritesButton.topAnchor.constraint(equalTo: releaseDate.bottomAnchor, constant: 4),
+            addToFavoritesButton.topAnchor.constraint(equalTo: releaseDate.bottomAnchor, constant: 20),
             addToFavoritesButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 10),
             addToFavoritesButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -10),
         ])
         
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-
+        
         scrollView.layoutIfNeeded()
         scrollView.isScrollEnabled = true
         
@@ -98,22 +98,23 @@ class MovieDetailView: UIView {
         titleName.numberOfLines = 0
         titleName.lineBreakStrategy = .standard
         titleName.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        titleName.textColor = .white
         
         overview.numberOfLines = 0
         overview.lineBreakStrategy = .standard
         overview.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        overview.textColor = .systemGray
+        overview.textColor = .white
         
         releaseDate.numberOfLines = 1
         releaseDate.textAlignment = .right
         releaseDate.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        releaseDate.textColor = .black
+        releaseDate.textColor = .white
         
         voteAverage.numberOfLines = 1
         voteAverage.textAlignment = .left
         voteAverage.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        voteAverage.textColor = .black
-    
+        voteAverage.textColor = .white
+        
         addToFavoritesButton.setTitle("Add To Favorites", for: .normal)
         addToFavoritesButton.backgroundColor = .red
         addToFavoritesButton.layer.cornerRadius = 8

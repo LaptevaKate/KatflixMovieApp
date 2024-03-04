@@ -15,12 +15,12 @@ struct OnboardingModel {
 
 extension OnboardingModel {
     static var slides = [OnboardingModel(title: OnboardingSlidesLocalization.titleSlide1.string,
-                               description: OnboardingSlidesLocalization.descriptionSlide1.string,
-                               image: UIImage(named: "Slide1")),
-               OnboardingModel(title: OnboardingSlidesLocalization.titleSlide2.string,
-                               description: OnboardingSlidesLocalization.descriptionSlide2.string,
-                               image: UIImage(named: "Slide2")),
-               OnboardingModel(title: OnboardingSlidesLocalization.titleSlide3.string,
-                               description: OnboardingSlidesLocalization.descriptionSlide3.string,
-                               image: UIImage(named: "Slide3"))]
+                                         description: OnboardingSlidesLocalization.descriptionSlide1.string,
+                                         image: UIImage(named: "Slide1")),
+                         OnboardingModel(title: OnboardingSlidesLocalization.titleSlide2.string,
+                                         description: OnboardingSlidesLocalization.descriptionSlide2.string,
+                                         image: UIImage(named: "Slide2")),
+                         OnboardingModel(title: OnboardingSlidesLocalization.titleSlide3.string,
+                                         description: OnboardingSlidesLocalization.descriptionSlide3.string,
+                                         image: UIImage(named: "Slide3"))]
 }

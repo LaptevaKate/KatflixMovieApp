@@ -36,7 +36,9 @@ final class TabBarViewController: UIViewController {
         let tabbar = UITabBarController()
         UITabBar.appearance().tintColor = .red
         UITabBar.appearance().unselectedItemTintColor = UIColor.white
+        UITabBar.appearance().barTintColor = .black
         tabbar.viewControllers = [createFavoritesNavigationController(), createTrendingNavigationController(), createSearchNavigationController()]
+        
         tabbar.selectedIndex = 1
         return tabbar
     }

@@ -24,7 +24,6 @@ struct MovieModel: Codable, Hashable {
     let voteAverage: Double?
     let mediaType: MediaType?
     
-    
     enum MediaType: String, Codable {
         case movie = "movie"
         case tv = "tv"

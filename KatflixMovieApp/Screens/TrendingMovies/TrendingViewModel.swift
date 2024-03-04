@@ -43,7 +43,7 @@ final class TrendingViewModel {
             switch result {
             case .success(let movies):
                 self.trendingMovies = movies.results
-                                self.updateDataSource()
+                self.updateDataSource()
             case .failure(let error):
                 print(error)
             }
@@ -71,6 +71,4 @@ final class TrendingViewModel {
         diffableDataSource.applySnapshotUsingReloadData(snapshot)
         print("refreshing diff db")
     }
-    
-    
 }

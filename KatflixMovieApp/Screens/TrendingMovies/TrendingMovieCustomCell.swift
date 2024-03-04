@@ -11,15 +11,15 @@ import UIKit
 class TrendingMovieCustomCell: UITableViewCell {
     
     let titleLabel = UILabel()
+    let releaseLabel = UILabel()
     let poster = UIImageView()
     let alreadyFavoritedButton = UIButton()
     var voteAverage = UIButton()
     var isAlreadyInFavorites: Bool = true
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -34,15 +34,16 @@ class TrendingMovieCustomCell: UITableViewCell {
     }
     override func prepareForReuse() {
         titleLabel.text = ""
+        releaseLabel.text = ""
         voteAverage.titleLabel?.text = ""
         poster.image = nil
     }
     
     private func configSubviews() {
-        let subviews = [titleLabel, poster, voteAverage, alreadyFavoritedButton]
+        let subviews = [titleLabel, poster, releaseLabel, voteAverage, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
-
+        
         poster.layer.cornerRadius = 10
         poster.clipsToBounds = true
         
@@ -51,6 +52,15 @@ class TrendingMovieCustomCell: UITableViewCell {
         titleLabel.lineBreakStrategy = .standard
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
+        titleLabel.textColor = .white
+        
+        
+        releaseLabel.adjustsFontSizeToFitWidth = true
+        releaseLabel.textAlignment = .left
+        releaseLabel.lineBreakStrategy = .standard
+        releaseLabel.numberOfLines = 0
+        releaseLabel.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        releaseLabel.textColor = .white
         
         voteAverage.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         voteAverage.setTitleColor(.systemOrange, for: .normal)
@@ -65,7 +75,7 @@ class TrendingMovieCustomCell: UITableViewCell {
         btnConfig.attributedTitle?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         btnConfig.buttonSize = .mini
         alreadyFavoritedButton.configuration = btnConfig
-
+        
         let padding: CGFloat = 10.0
         
         NSLayoutConstraint.activate([
@@ -77,9 +87,12 @@ class TrendingMovieCustomCell: UITableViewCell {
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             titleLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-
-            voteAverage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
-            voteAverage.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0),
+            
+            releaseLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
+            releaseLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
+            
+            voteAverage.topAnchor.constraint(equalTo: releaseLabel.bottomAnchor, constant: padding),
+            voteAverage.leadingAnchor.constraint(equalTo: releaseLabel.leadingAnchor, constant: 0),
             
             alreadyFavoritedButton.bottomAnchor.constraint(equalTo: poster.bottomAnchor, constant: 0),
             alreadyFavoritedButton.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),

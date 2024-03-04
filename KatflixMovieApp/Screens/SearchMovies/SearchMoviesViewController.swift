@@ -8,22 +8,103 @@
 import UIKit
 
 class SearchMoviesViewController: UIViewController {
+    
+    var searchQuery: String?
+    var searchTableView = UITableView()
+    private let searchViewModel = SearchMoviesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        configureSearchController()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension SearchMoviesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchTableView.deselectRow(at: indexPath, animated: true)
+        guard let selectedItem = searchViewModel.diffableDataSource.itemIdentifier(for: indexPath) else { return }
+        
+        navigationController?.pushViewController(DetailMoviesViewController(movie: selectedItem), animated: true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureTableView() {
+        searchViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: searchTableView, cellProvider: { tableView, indexPath, itemIdentifier in
+            let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchMovieCustomCell
+            cell.backgroundColor = .black
+            if itemIdentifier.title != nil {
+                cell.titleLabel.text = itemIdentifier.title
+            } else {
+                cell.titleLabel.text = "N/A"
+            }
+            
+            if itemIdentifier.posterPath != nil {
+                cell.getPosterFromURL(posterPath: itemIdentifier.posterPath!)
+            } else {
+                cell.poster.image = UIImage(named: "poster-placeholder")
+            }
+           
+            if itemIdentifier.releaseDate != nil {
+                cell.releaseDate.text = "\(itemIdentifier.releaseDate!.components(separatedBy: "-")[0])"
+            } else {
+                cell.releaseDate.text = "Unknown Date"
+            }
+          
+            if itemIdentifier.voteAverage != nil {
+                cell.voteAverage.text = String(itemIdentifier.voteAverage!)
+            } else {
+                cell.voteAverage.text = "?.?"
+            }
+            // check for favorited movies
+         
+          
+            if itemIdentifier.voteAverage! < 4.0 {
+                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+            } else if itemIdentifier.voteAverage! < 7.0 {
+                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemOrange, renderingMode: .alwaysOriginal)
+            } else if itemIdentifier.voteAverage! < 8.0 {
+                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+            } else {
+                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+            }
+            
+            return cell
+        })
+        
+        searchTableView.rowHeight = 130
+        searchTableView.delegate = self
+        searchTableView.register(SearchMovieCustomCell.self, forCellReuseIdentifier: "searchCell")
+        searchTableView.frame = view.bounds
+        searchTableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(searchTableView)
     }
-    */
-
+}
+extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.searchQuery = searchController.searchBar.text!
+        print(self.searchQuery!)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("didEndEditing")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("buttonClicked")
+        searchViewModel.getSearchResults(query: searchQuery!, page: 1)
+    }
+    
+    private func configureSearchController() {
+        searchViewModel.searchController.searchResultsUpdater = self
+        searchViewModel.searchController.obscuresBackgroundDuringPresentation = false
+        searchViewModel.searchController.searchBar.enablesReturnKeyAutomatically = true
+        searchViewModel.searchController.searchBar.placeholder = "Search Movies"
+        navigationItem.searchController = searchViewModel.searchController
+        definesPresentationContext = true
+        
+        searchViewModel.searchController.searchBar.autocapitalizationType = .none
+        searchViewModel.searchController.searchBar.delegate = self
+    }
 }

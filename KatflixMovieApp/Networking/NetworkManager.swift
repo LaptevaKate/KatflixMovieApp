@@ -56,7 +56,6 @@ class NetworkManager {
         task.resume()
     }
     
-    // GET Poster image for a movie with posterPath
     func getPosterImage(posterPath: String, completion: @escaping (UIImage) -> ()) {
         
         let url: String = NetworkConstant.imgBaseURL.rawValue + posterPath
@@ -74,15 +73,12 @@ class NetworkManager {
         img.resume()
     }
     
-    // GET Backdrop image for a movie with backdropPath
     func getBackdropImage(backdropPath: String, completion: @escaping (UIImage) -> ()) {
         
         let url: String = NetworkConstant.imgBaseURL.rawValue + backdropPath
-        
         guard let url = URL(string: url) else {
             return
         }
-        
         let img = URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
                 return
@@ -91,5 +87,26 @@ class NetworkManager {
         }
         img.resume()
     }
-
+    
+    func getSearchResults(query: String, page: Int, completed: @escaping (Swift.Result<PopularMoviesModel, Error>) -> Void) {
+        
+        let endpoint = "\(NetworkConstant.baseURL.rawValue)/search/movie?api_key=\(NetworkConstant.apiKey.rawValue)&language=en-US&query=\(query)&page=\(page)"
+        
+        guard let url = URL(string: endpoint) else { return }
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let _ = error { return }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
+            guard let data = data else { return }
+            
+            do {
+                let decoder = JSONDecoder()
+                let searchResult = try decoder.decode(PopularMoviesModel.self, from: data)
+                completed(.success(searchResult))
+            } catch {
+                return
+            }
+        }
+        task.resume()
+    }
 }
