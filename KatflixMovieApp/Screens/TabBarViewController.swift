@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarViewController: UIViewController {
+final class TabBarViewController: UIViewController {
     
     static func createTrendingNavigationController() -> UINavigationController {
         let trendingVC = TrendingMoviesViewController()
@@ -33,7 +33,6 @@ class TabBarViewController: UIViewController {
     }
     
     static func createTabbar() -> UITabBarController {
-        
         let tabbar = UITabBarController()
         UITabBar.appearance().tintColor = .red
         UITabBar.appearance().unselectedItemTintColor = UIColor.white
