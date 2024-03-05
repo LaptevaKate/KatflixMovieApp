@@ -45,7 +45,7 @@ final class TrendingViewModel {
                 self.trendingMovies = movies.results
                 self.updateDataSource()
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }
@@ -60,7 +60,7 @@ final class TrendingViewModel {
             case .success(_):
                 self.delegate?.didFetchMovieDetails()
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }

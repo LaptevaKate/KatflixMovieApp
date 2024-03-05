@@ -21,9 +21,11 @@ class FavoriteMoviesViewController: UIViewController,FavoritesViewModelDelegate 
         
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         favoritesViewModel.delegate = self
         configureTableview()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         favoritesViewModel.updateDB()
     }
 }

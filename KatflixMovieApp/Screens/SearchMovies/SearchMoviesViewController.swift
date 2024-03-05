@@ -30,7 +30,6 @@ extension SearchMoviesViewController: UITableViewDelegate {
         
         navigationController?.pushViewController(DetailMoviesViewController(movie: selectedItem), animated: true)
     }
-    
     private func configureTableView() {
         searchViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: searchTableView, cellProvider: { tableView, indexPath, itemIdentifier in
             let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchMovieCustomCell
@@ -73,10 +72,8 @@ extension SearchMoviesViewController: UITableViewDelegate {
             } else {
                 cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
             }
-            
             return cell
         })
-        
         searchTableView.rowHeight = 130
         searchTableView.delegate = self
         searchTableView.register(SearchMovieCustomCell.self, forCellReuseIdentifier: "searchCell")
@@ -102,7 +99,7 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelega
     
     private func configureSearchController() {
         searchViewModel.searchController.searchResultsUpdater = self
-        searchViewModel.searchController.obscuresBackgroundDuringPresentation = true
+        searchViewModel.searchController.obscuresBackgroundDuringPresentation = false
         searchViewModel.searchController.searchBar.enablesReturnKeyAutomatically = true
         searchViewModel.searchController.searchBar.placeholder = "Search Movies"
         navigationItem.searchController = searchViewModel.searchController

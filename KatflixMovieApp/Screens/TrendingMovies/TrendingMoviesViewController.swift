@@ -19,6 +19,9 @@ class TrendingMoviesViewController: UIViewController {
         trendingViewModel.delegate = self
         trendingViewModel.getTrendingMovies()
         configureTableview()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         applyChangesToSnapshot()
     }
     

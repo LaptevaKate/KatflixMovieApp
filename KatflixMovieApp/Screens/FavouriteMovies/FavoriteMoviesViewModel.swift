@@ -30,7 +30,7 @@ class FavoriteMoviesViewModel {
     
     func didTapFavoriteCell(tappedCell: FavoriteMovieCustomCell, indexPath: IndexPath) -> UIAlertController {
         
-        let alert = UIAlertController(title: "Remove from list", message: "\(tappedCell.titleLabel.text!) will be deleted from your favorites list. Are you sure?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Remove from Favorites", message: "\(tappedCell.titleLabel.text!) will be deleted from your Favorites. Are you sure?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: {(alert: UIAlertAction!) in
             var snapshot = self.diffableDataSource.snapshot()
