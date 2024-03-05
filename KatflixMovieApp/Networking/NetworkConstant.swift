@@ -14,14 +14,14 @@ enum NetworkConstant: String {
     case imgBaseURL = "https://image.tmdb.org/t/p/original/"
 }
 
-enum trendingMediaType : String {
+enum trendingMediaType: String {
     case all = "all"
     case movie = "movie"
     case tv = "tv"
     case person = "person"
 }
  
-enum trendingTimeWindow : String {
+enum trendingTimeWindow: String {
     case day = "day"
     case week = "week"
 }

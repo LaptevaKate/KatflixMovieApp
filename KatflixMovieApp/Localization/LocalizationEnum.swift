@@ -39,3 +39,18 @@ enum OnboardingSlidesLocalization {
         }
     }
 }
+
+enum TrendingMoviesLocalization {
+    
+}
+
+enum DetailMoviesLocalization {
+    
+}
+
+enum FavouriteMoviesLocalization {
+    
+}
+enum SearchMoviesLocalization {
+    
+}
