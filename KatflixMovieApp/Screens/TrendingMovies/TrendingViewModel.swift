@@ -33,9 +33,9 @@ final class TrendingViewModel {
     
     private func updateDataSource() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, MovieModel>()
-        snapshot.appendSections([.trendingSection])
+        snapshot.appendSections([.trending])
         snapshot.appendItems(self.trendingMovies)
-        self.diffableDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+        self.diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
     }
     
     func getTrendingMovies() {

@@ -104,5 +104,4 @@ class SearchMovieCustomCell: UITableViewCell {
             }
         }
     }
-
 }

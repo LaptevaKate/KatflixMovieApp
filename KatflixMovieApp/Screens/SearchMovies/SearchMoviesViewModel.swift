@@ -17,7 +17,7 @@ class SearchMoviesViewModel {
     
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, MovieModel>()
-        snapshot.appendSections([.searchSection])
+        snapshot.appendSections([.search])
         snapshot.appendItems(self.searchResults)
         diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -34,6 +34,5 @@ class SearchMoviesViewModel {
                 print(error)
             }
         }
-    }
-    
+    }    
 }

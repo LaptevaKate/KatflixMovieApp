@@ -8,7 +8,7 @@
 import Foundation
 
 enum Section {
-    case trendingSection
-    case favoritesSection
-    case searchSection
+    case trending
+    case favorites
+    case search
 }

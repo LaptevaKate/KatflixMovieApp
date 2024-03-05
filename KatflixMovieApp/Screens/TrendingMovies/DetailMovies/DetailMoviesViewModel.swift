@@ -7,12 +7,11 @@
 
 import Foundation
 import UIKit
-
-protocol DetailMoviesDelegate : AnyObject {
-    func updateDB()
-}
+import RealmSwift
 
 class DetailMoviesViewModel {
+    
+    let realm = try! Realm()
     weak var delegate: DetailMoviesDelegate?
     var movie: MovieModel!
     
@@ -25,6 +24,15 @@ class DetailMoviesViewModel {
     }
     
     func didTapAddToFavorites() {
-        
+        try! realm.write({
+            let movie = RealmMovieModel()
+            movie.title = self.movie.title!
+            movie.id = self.movie.id
+            movie.poster = self.movie.posterPath!
+            realm.add(movie, update: .modified)
+            print("Name: \(movie.title) ID: \(movie.id) || Added to realm")
+        })
+        self.delegate?.updateDB()
     }
 }
+

@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TrendingMoviesViewController: UIViewController {
-    
+    let realm = try! Realm()
     private let trendingViewModel = TrendingViewModel()
     
     let trendingTableView = UITableView()
@@ -18,9 +19,6 @@ class TrendingMoviesViewController: UIViewController {
         trendingViewModel.delegate = self
         trendingViewModel.getTrendingMovies()
         configureTableview()
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
         applyChangesToSnapshot()
     }
     
@@ -30,7 +28,6 @@ class TrendingMoviesViewController: UIViewController {
         trendingViewModel.diffableDataSource.applySnapshotUsingReloadData(snapshot)
         print("refreshing diff db")
     }
-    
 }
 // MARK: UITableViewDelegate 
 extension TrendingMoviesViewController : UITableViewDelegate {
@@ -48,15 +45,14 @@ extension TrendingMoviesViewController : UITableViewDelegate {
             let cell = self.trendingTableView.dequeueReusableCell(withIdentifier: "trendingCell", for: indexPath) as! TrendingMovieCustomCell
             cell.backgroundColor = .black
             cell.titleLabel.text = itemIdentifier.title
-            cell.releaseLabel.text = itemIdentifier.releaseDate
+            cell.mediaLabel.text = itemIdentifier.mediaType?.rawValue
             cell.voteAverage.setTitle(" \(String(itemIdentifier.voteAverage!)) ", for: .normal)
             cell.getPosterFromURL(posterPath: itemIdentifier.posterPath!)
-            
             cell.voteAverage.setTitleColor(self.trendingViewModel.voteAverageColorCheck(voteAverage: itemIdentifier.voteAverage!), for: .normal)
+            cell.alreadyFavoritedButton.isHidden = self.isAlreadyInFavorites(id: itemIdentifier.id)
             
             return cell
         })
-        
         trendingTableView.delegate = self
         trendingTableView.register(TrendingMovieCustomCell.self, forCellReuseIdentifier: "trendingCell")
         trendingTableView.frame = view.bounds
@@ -69,5 +65,10 @@ extension TrendingMoviesViewController : UITableViewDelegate {
 // MARK: Delegation
 extension TrendingMoviesViewController: TrendingViewModelDelegate {
     func didFetchMovieDetails() {
+    }
+}
+extension TrendingMoviesViewController: FavoritesVCDelegate {
+    func isAlreadyInFavorites(id: Int) -> Bool {
+        return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) == nil
     }
 }

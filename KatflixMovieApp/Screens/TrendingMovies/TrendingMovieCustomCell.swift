@@ -11,7 +11,7 @@ import UIKit
 class TrendingMovieCustomCell: UITableViewCell {
     
     let titleLabel = UILabel()
-    let releaseLabel = UILabel()
+    let mediaLabel = UILabel()
     let poster = UIImageView()
     let alreadyFavoritedButton = UIButton()
     var voteAverage = UIButton()
@@ -34,13 +34,13 @@ class TrendingMovieCustomCell: UITableViewCell {
     }
     override func prepareForReuse() {
         titleLabel.text = ""
-        releaseLabel.text = ""
+        mediaLabel.text = ""
         voteAverage.titleLabel?.text = ""
         poster.image = nil
     }
     
     private func configSubviews() {
-        let subviews = [titleLabel, poster, releaseLabel, voteAverage, alreadyFavoritedButton]
+        let subviews = [titleLabel, poster, mediaLabel, voteAverage, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
@@ -54,13 +54,12 @@ class TrendingMovieCustomCell: UITableViewCell {
         titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
         titleLabel.textColor = .white
         
-        
-        releaseLabel.adjustsFontSizeToFitWidth = true
-        releaseLabel.textAlignment = .left
-        releaseLabel.lineBreakStrategy = .standard
-        releaseLabel.numberOfLines = 0
-        releaseLabel.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        releaseLabel.textColor = .white
+        mediaLabel.adjustsFontSizeToFitWidth = true
+        mediaLabel.textAlignment = .left
+        mediaLabel.lineBreakStrategy = .standard
+        mediaLabel.numberOfLines = 0
+        mediaLabel.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        mediaLabel.textColor = .white
         
         voteAverage.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         voteAverage.setTitleColor(.systemOrange, for: .normal)
@@ -88,11 +87,11 @@ class TrendingMovieCustomCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             
-            releaseLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
-            releaseLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
+            mediaLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
+            mediaLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
             
-            voteAverage.topAnchor.constraint(equalTo: releaseLabel.bottomAnchor, constant: padding),
-            voteAverage.leadingAnchor.constraint(equalTo: releaseLabel.leadingAnchor, constant: 0),
+            voteAverage.topAnchor.constraint(equalTo: mediaLabel.bottomAnchor, constant: padding),
+            voteAverage.leadingAnchor.constraint(equalTo: mediaLabel.leadingAnchor, constant: 0),
             
             alreadyFavoritedButton.bottomAnchor.constraint(equalTo: poster.bottomAnchor, constant: 0),
             alreadyFavoritedButton.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),

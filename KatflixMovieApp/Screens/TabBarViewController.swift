@@ -18,7 +18,7 @@ final class TabBarViewController: UIViewController {
     }
     
     static func createFavoritesNavigationController() -> UINavigationController {
-        let favoritesVC = FavouriteMoviesViewController()
+        let favoritesVC = FavoriteMoviesViewController()
         favoritesVC.title = "Favorites"
         favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill") , tag: 0)
         return UINavigationController(rootViewController: favoritesVC)

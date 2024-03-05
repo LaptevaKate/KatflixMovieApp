@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchMoviesViewController: UIViewController {
     
+    let realm = try! Realm()
     var searchQuery: String?
     var searchTableView = UITableView()
     private let searchViewModel = SearchMoviesViewModel()
@@ -36,7 +38,7 @@ extension SearchMoviesViewController: UITableViewDelegate {
             if itemIdentifier.title != nil {
                 cell.titleLabel.text = itemIdentifier.title
             } else {
-                cell.titleLabel.text = "N/A"
+                cell.titleLabel.text = "Not Found"
             }
             
             if itemIdentifier.posterPath != nil {
@@ -56,9 +58,12 @@ extension SearchMoviesViewController: UITableViewDelegate {
             } else {
                 cell.voteAverage.text = "?.?"
             }
-            // check for favorited movies
-         
-          
+        
+            if (self.realm.object(ofType: RealmMovieModel.self, forPrimaryKey: itemIdentifier.id) == nil) {
+                cell.alreadyFavoritedButton.isHidden = true
+            } else {
+                cell.alreadyFavoritedButton.isHidden = false
+            }
             if itemIdentifier.voteAverage! < 4.0 {
                 cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
             } else if itemIdentifier.voteAverage! < 7.0 {
@@ -83,8 +88,7 @@ extension SearchMoviesViewController: UITableViewDelegate {
 extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        self.searchQuery = searchController.searchBar.text!
-        print(self.searchQuery!)
+        self.searchQuery = searchController.searchBar.text ?? ""
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -93,12 +97,12 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelega
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("buttonClicked")
-        searchViewModel.getSearchResults(query: searchQuery!, page: 1)
+        searchViewModel.getSearchResults(query: searchQuery ?? "", page: 1)
     }
     
     private func configureSearchController() {
         searchViewModel.searchController.searchResultsUpdater = self
-        searchViewModel.searchController.obscuresBackgroundDuringPresentation = false
+        searchViewModel.searchController.obscuresBackgroundDuringPresentation = true
         searchViewModel.searchController.searchBar.enablesReturnKeyAutomatically = true
         searchViewModel.searchController.searchBar.placeholder = "Search Movies"
         navigationItem.searchController = searchViewModel.searchController

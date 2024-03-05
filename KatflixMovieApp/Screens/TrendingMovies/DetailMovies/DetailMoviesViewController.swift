@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DetailMoviesDelegate : AnyObject {
+    func updateDB()
+}
+
 class DetailMoviesViewController: UIViewController {
     
     weak var delegate: DetailMoviesDelegate?
@@ -44,15 +48,17 @@ class DetailMoviesViewController: UIViewController {
     private func setViewProperties() {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
         movieDetailView.overview.text = movieDetailViewModel.movie.overview
-        movieDetailView.voteAverage.text = "Score: \(String(movieDetailViewModel.movie.voteAverage!))"
-        movieDetailView.releaseDate.text = "Release Date: \(movieDetailViewModel.movie.releaseDate!)"
-        movieDetailViewModel.getBackdropFromURL(backdropPath: movieDetailViewModel.movie.backdropPath!, backdropView: movieDetailView.backdropImage)
+        guard let movieVote = movieDetailViewModel.movie.voteAverage else {return }
+        movieDetailView.voteAverage.text = "Score: \(String(movieVote))"
+        guard let movieReleaseDate = movieDetailViewModel.movie.voteAverage else {return }
+        movieDetailView.releaseDate.text = "Release Date: \(movieReleaseDate)"
+        guard let movieBackdropPath = movieDetailViewModel.movie.backdropPath else {return }
+        movieDetailViewModel.getBackdropFromURL(backdropPath: movieBackdropPath, backdropView: movieDetailView.backdropImage)
     }
 }
 
 extension DetailMoviesViewController: DetailMoviesDelegate {
-    func updateDB() {
-        //        
+    func updateDB() {       
     }
 }
 extension DetailMoviesViewController: MovieDetailViewDelegate {
