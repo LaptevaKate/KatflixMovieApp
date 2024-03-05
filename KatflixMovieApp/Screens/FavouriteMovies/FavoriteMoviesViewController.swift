@@ -34,6 +34,7 @@ extension FavoriteMoviesViewController: UITableViewDelegate {
     private func configureTableview() {
         favoritesViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: favoritesTableView, cellProvider: { tableView, indexPath, itemIdentifier in
             let cell = self.favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoriteMovieCustomCell
+            cell.backgroundColor = .black
             cell.id = itemIdentifier.id
             cell.titleLabel.text = itemIdentifier.title
             cell.getPosterFromURL(posterPath: itemIdentifier.poster)
@@ -45,6 +46,7 @@ extension FavoriteMoviesViewController: UITableViewDelegate {
         favoritesTableView.frame = view.bounds
         favoritesTableView.translatesAutoresizingMaskIntoConstraints = false
         favoritesTableView.rowHeight = 110
+        favoritesTableView.backgroundColor = .black
         view.addSubview(favoritesTableView)
     }
     

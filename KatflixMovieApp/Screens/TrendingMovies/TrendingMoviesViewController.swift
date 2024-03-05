@@ -61,6 +61,7 @@ extension TrendingMoviesViewController : UITableViewDelegate {
         trendingTableView.frame = view.bounds
         trendingTableView.translatesAutoresizingMaskIntoConstraints = false
         trendingTableView.rowHeight = 310
+        trendingTableView.backgroundColor = .black
         view.addSubview(trendingTableView)
     }
 }

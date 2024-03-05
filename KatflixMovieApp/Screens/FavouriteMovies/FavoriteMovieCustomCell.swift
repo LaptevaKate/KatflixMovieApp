@@ -41,7 +41,9 @@ final class FavoriteMovieCustomCell: UITableViewCell {
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        titleLabel.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        titleLabel.numberOfLines = 0
+        titleLabel.textColor = .white
         let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([

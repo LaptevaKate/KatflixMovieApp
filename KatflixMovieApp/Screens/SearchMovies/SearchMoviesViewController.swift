@@ -79,6 +79,7 @@ extension SearchMoviesViewController: UITableViewDelegate {
         searchTableView.register(SearchMovieCustomCell.self, forCellReuseIdentifier: "searchCell")
         searchTableView.frame = view.bounds
         searchTableView.translatesAutoresizingMaskIntoConstraints = false
+        searchTableView.backgroundColor = .black
         view.addSubview(searchTableView)
     }
 }
@@ -101,10 +102,9 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelega
         searchViewModel.searchController.searchResultsUpdater = self
         searchViewModel.searchController.obscuresBackgroundDuringPresentation = false
         searchViewModel.searchController.searchBar.enablesReturnKeyAutomatically = true
-        searchViewModel.searchController.searchBar.placeholder = "Search Movies"
+        searchViewModel.searchController.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(string: "Search Movies", attributes: [NSAttributedString.Key.foregroundColor:UIColor.systemGray3])
         navigationItem.searchController = searchViewModel.searchController
         definesPresentationContext = true
-        
         searchViewModel.searchController.searchBar.autocapitalizationType = .none
         searchViewModel.searchController.searchBar.delegate = self
     }
