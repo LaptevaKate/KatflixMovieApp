@@ -46,7 +46,7 @@ class FavoriteMoviesViewModel {
     }
 }
 extension FavoriteMoviesViewModel : DetailMoviesDelegate {
-    func updateDB() {
+    func updateRealmDataBase() {
         let realmData = realm.objects(RealmMovieModel.self)
         self.favoriteMovies = Array(realmData)
         self.updateDataSource(diffableDataSource: self.diffableDataSource)

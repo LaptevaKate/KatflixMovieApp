@@ -32,7 +32,7 @@ class DetailMoviesViewModel {
             realm.add(movie, update: .modified)
             print("Name: \(movie.title) ID: \(movie.id) || Added to realm")
         })
-        self.delegate?.updateDB()
+        self.delegate?.updateRealmDataBase()
     }
 }
 

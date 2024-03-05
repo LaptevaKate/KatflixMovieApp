@@ -5,11 +5,12 @@
 //  Created by Екатерина Лаптева on 1.03.24.
 //
 
-import Foundation
 import UIKit
+import RealmSwift
 
 class TrendingMovieCustomCell: UITableViewCell {
     
+    let realm = try! Realm()
     let titleLabel = UILabel()
     let mediaLabel = UILabel()
     let poster = UIImageView()
@@ -105,6 +106,14 @@ class TrendingMovieCustomCell: UITableViewCell {
                 self.poster.image = image
             }
         }
+    }
+    func checkFavorite(id: Int) -> Bool {
+        return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) != nil
+    }
+}
+extension TrendingMovieCustomCell: DetailMoviesDelegate {
+    func updateRealmDataBase() {
+        alreadyFavoritedButton.isHidden = false
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailMoviesDelegate : AnyObject {
-    func updateDB()
+    func updateRealmDataBase()
 }
 
 class DetailMoviesViewController: UIViewController {
@@ -50,7 +50,7 @@ class DetailMoviesViewController: UIViewController {
         movieDetailView.overview.text = movieDetailViewModel.movie.overview
         guard let movieVote = movieDetailViewModel.movie.voteAverage else {return }
         movieDetailView.voteAverage.text = "Score: \(String(movieVote))"
-        guard let movieReleaseDate = movieDetailViewModel.movie.voteAverage else {return }
+        guard let movieReleaseDate = movieDetailViewModel.movie.releaseDate else {return }
         movieDetailView.releaseDate.text = "Release Date: \(movieReleaseDate)"
         guard let movieBackdropPath = movieDetailViewModel.movie.backdropPath else {return }
         movieDetailViewModel.getBackdropFromURL(backdropPath: movieBackdropPath, backdropView: movieDetailView.backdropImage)
@@ -58,7 +58,7 @@ class DetailMoviesViewController: UIViewController {
 }
 
 extension DetailMoviesViewController: DetailMoviesDelegate {
-    func updateDB() {       
+    func updateRealmDataBase() {       
     }
 }
 extension DetailMoviesViewController: MovieDetailViewDelegate {

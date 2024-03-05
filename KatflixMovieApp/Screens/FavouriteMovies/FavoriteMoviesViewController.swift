@@ -26,7 +26,7 @@ class FavoriteMoviesViewController: UIViewController,FavoritesViewModelDelegate 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        favoritesViewModel.updateDB()
+        favoritesViewModel.updateRealmDataBase()
     }
 }
 
