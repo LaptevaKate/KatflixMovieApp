@@ -39,11 +39,10 @@ class DetailMoviesViewController: UIViewController {
         movieDetailView.delegate = self
         setViewProperties()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        movieDetailView.scrollView.contentSize.height = self.movieDetailView.titleName.bounds.height + self.movieDetailView.overview.bounds.height + self.movieDetailView.addToFavoritesButton.bounds.height + 80
-    }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        movieDetailView.scrollView.contentSize.height = self.movieDetailView.titleName.bounds.height + self.movieDetailView.overview.bounds.height + self.movieDetailView.addToFavoritesButton.bounds.height + 80
+//    }
     
     private func setViewProperties() {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
