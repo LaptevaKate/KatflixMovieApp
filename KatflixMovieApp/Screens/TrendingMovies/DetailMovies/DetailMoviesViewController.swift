@@ -39,10 +39,10 @@ class DetailMoviesViewController: UIViewController {
         movieDetailView.delegate = self
         setViewProperties()
     }
-//    
-//    override func viewDidAppear(_ animated: Bool) {
-//        movieDetailView.scrollView.contentSize.height = self.movieDetailView.titleName.bounds.height + self.movieDetailView.overview.bounds.height + self.movieDetailView.addToFavoritesButton.bounds.height + 80
-//    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        movieDetailView.scrollView.contentSize.height = self.movieDetailView.titleName.bounds.height + self.movieDetailView.overview.bounds.height + self.movieDetailView.addToFavoritesButton.bounds.height + 80
+    }
     
     private func setViewProperties() {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
@@ -54,6 +54,12 @@ class DetailMoviesViewController: UIViewController {
         guard let movieBackdropPath = movieDetailViewModel.movie.backdropPath else {return }
         movieDetailViewModel.getBackdropFromURL(backdropPath: movieBackdropPath, backdropView: movieDetailView.backdropImage)
     }
+    
+    private func presentAlert() {
+        let alert = UIAlertController(title: "Success", message: "Movie Was Added To Favorites!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
 }
 
 extension DetailMoviesViewController: DetailMoviesDelegate {
@@ -63,5 +69,6 @@ extension DetailMoviesViewController: DetailMoviesDelegate {
 extension DetailMoviesViewController: MovieDetailViewDelegate {
     func didTapFavoriteButton() {
         movieDetailViewModel.didTapAddToFavorites()
+        presentAlert()
     }
 }

@@ -12,21 +12,30 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     
-    func getTrendingMovies(contentType mediatype: trendingMediaType, timePeriod timeWindow: trendingTimeWindow, completed: @escaping (Swift.Result<PopularMoviesModel, Error>) -> Void) {
+    func getTrendingMovies(contentType mediatype: trendingMediaType, timePeriod timeWindow: trendingTimeWindow, completion: @escaping (Swift.Result<PopularMoviesModel, NetworkError>) -> Void) {
         
         let endpoint = "\(NetworkConstant.baseURL.rawValue)/trending/\(mediatype)/\(timeWindow)?api_key=\(NetworkConstant.apiKey.rawValue)"
         
-        guard let url = URL(string: endpoint) else { return }
+        guard let url = URL(string: endpoint) else {
+            completion(.failure(.invalidURL))
+            return
+        }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            if let _ = error { return }
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
+            if let error = error  {
+                completion(.failure(.networkError(error)))
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.unexpectedResponse))
+                return
+            }
             guard let data = data else { return }
             
             do {
                 let decoder = JSONDecoder()
                 let movies = try decoder.decode(PopularMoviesModel.self, from: data)
-                completed(.success(movies))
+                completion(.success(movies))
             } catch {
                 return
             }
@@ -34,21 +43,30 @@ class NetworkManager {
         task.resume()
     }
     
-    func getMovieByID(movieID id: Int, completed: @escaping (Swift.Result<MovieModel, Error>) -> Void) {
+    func getMovieByID(movieID id: Int, completion: @escaping (Swift.Result<MovieModel, NetworkError>) -> Void) {
         
         let endpoint = "\(NetworkConstant.baseURL.rawValue)/movie/\(id)?api_key=\(NetworkConstant.apiKey.rawValue)"
-        guard let url = URL(string: endpoint) else { return }
+        guard let url = URL(string: endpoint) else { 
+            completion(.failure(.invalidURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            if let _ = error { return }
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
+            if let error = error  {
+                completion(.failure(.networkError(error)))
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { 
+                completion(.failure(.unexpectedResponse))
+                return
+            }
             guard let data = data else { return }
             
             do {
                 let decoder = JSONDecoder()
                 let movie = try decoder.decode(MovieModel.self, from: data)
-                completed(.success(movie))
+                completion(.success(movie))
             } catch {
                 return
             }
@@ -88,21 +106,30 @@ class NetworkManager {
         img.resume()
     }
     
-    func getSearchResults(query: String, page: Int, completed: @escaping (Swift.Result<PopularMoviesModel, Error>) -> Void) {
+    func getSearchResults(query: String, page: Int, completion: @escaping (Swift.Result<PopularMoviesModel, NetworkError>) -> Void) {
         
         let endpoint = "\(NetworkConstant.baseURL.rawValue)/search/movie?api_key=\(NetworkConstant.apiKey.rawValue)&language=en-US&query=\(query)&page=\(page)"
         
-        guard let url = URL(string: endpoint) else { return }
+        guard let url = URL(string: endpoint) else {
+            completion(.failure(.invalidURL))
+            return
+        }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            if let _ = error { return }
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { return }
+            if let error = error  {
+                completion(.failure(.networkError(error)))
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { 
+                completion(.failure(.unexpectedResponse))
+                return
+            }
             guard let data = data else { return }
             
             do {
                 let decoder = JSONDecoder()
                 let searchResult = try decoder.decode(PopularMoviesModel.self, from: data)
-                completed(.success(searchResult))
+                completion(.success(searchResult))
             } catch {
                 return
             }

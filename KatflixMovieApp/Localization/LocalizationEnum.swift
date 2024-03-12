@@ -20,17 +20,17 @@ enum OnboardingSlidesLocalization {
     var string: String {
         switch self {
         case .titleSlide1:
-            return NSLocalizedString(OnboardingConstant.titleSlideTheFirst, comment: "")
+            return NSLocalizedString(ConstantText.titleSlide1.rawValue, comment: "")
         case .descriptionSlide1:
-            return NSLocalizedString(OnboardingConstant.descriptionSlideTheFirst, comment: "")
+            return NSLocalizedString(ConstantText.descriptionSlide1.rawValue, comment: "")
         case .titleSlide2:
-            return NSLocalizedString(OnboardingConstant.titleSlideTheSecond, comment: "")
+            return NSLocalizedString(ConstantText.titleSlide2.rawValue, comment: "")
         case .descriptionSlide2:
-            return NSLocalizedString(OnboardingConstant.descriptionSlideTheSecond, comment: "")
+            return NSLocalizedString(ConstantText.descriptionSlide2.rawValue, comment: "")
         case .titleSlide3:
-            return NSLocalizedString(OnboardingConstant.titleSlideTheThird, comment: "")
+            return NSLocalizedString(ConstantText.titleSlide3.rawValue, comment: "")
         case .descriptionSlide3:
-            return NSLocalizedString(OnboardingConstant.descriptionSlideTheThird, comment: "")
+            return NSLocalizedString(ConstantText.descriptionSlide3.rawValue, comment: "")
         case .nextButton:
             return NSLocalizedString("Next", comment: "")
         case .getStarted:

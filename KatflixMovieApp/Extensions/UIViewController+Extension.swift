@@ -1,5 +1,5 @@
 //
-//  UiViewController+Extension.swift
+//  UIViewController+Extension.swift
 //  KatflixMovieApp
 //
 //  Created by Екатерина Лаптева on 21.02.24.

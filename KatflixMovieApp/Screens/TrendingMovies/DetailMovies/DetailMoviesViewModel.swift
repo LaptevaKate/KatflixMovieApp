@@ -33,6 +33,8 @@ class DetailMoviesViewModel {
             print("Name: \(movie.title) ID: \(movie.id) || Added to realm")
         })
         self.delegate?.updateRealmDataBase()
+        
     }
+    
 }
 

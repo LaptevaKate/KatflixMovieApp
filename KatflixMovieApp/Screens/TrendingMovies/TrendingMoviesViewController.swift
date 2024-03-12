@@ -52,6 +52,7 @@ extension TrendingMoviesViewController : UITableViewDelegate {
             cell.voteAverage.setTitle(" \(String(itemIdentifier.voteAverage!)) ", for: .normal)
             cell.getPosterFromURL(posterPath: itemIdentifier.posterPath!)
             cell.voteAverage.setTitleColor(self.trendingViewModel.voteAverageColorCheck(voteAverage: itemIdentifier.voteAverage!), for: .normal)
+            
             cell.alreadyFavoritedButton.isHidden = self.isAlreadyInFavorites(id: itemIdentifier.id)
             
             return cell

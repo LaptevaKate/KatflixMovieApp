@@ -13,7 +13,7 @@
         }
       }
     },
-    "An exciting plot will take you into a fantasy world or help you experience all the variety of real storylines" : {
+    "An exciting storyline will take you into a fantasy world or help you experience all the variety of real storylines" : {
       "comment" : "OnboardingSlide1",
       "extractionState" : "manual",
       "localizations" : {
@@ -33,6 +33,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Приступаем"
+          }
+        }
+      }
+    },
+    "Immerse yourself in a world filled with picturesque illustrations, or in everyday life with qualitatively drawn locations and characters" : {
+      "comment" : "OnboardingSlide3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Окунитесь в мир, наполненный живописными иллюстрациями, или  в повседневную жизнь с качественно прорисованными локациями и персонажами"
           }
         }
       }
@@ -61,19 +73,7 @@
         }
       }
     },
-    "Step into a world filled with picturesque illustrations or plunge into everyday life with qualitatively drawn locations and characters" : {
-      "comment" : "OnboardingSlide3",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Окунитесь в мир, наполненный живописными иллюстрациями, или  в повседневную жизнь с качественно прорисованными локациями и персонажами"
-          }
-        }
-      }
-    },
-    "The combination of colorful images, high-quality sound will give you unique impressions" : {
+    "The combination of colorful images and high-quality sound will give you a unique experience" : {
       "comment" : "OnboardingSlide2",
       "extractionState" : "manual",
       "localizations" : {
@@ -85,7 +85,7 @@
         }
       }
     },
-    "Unique impressions" : {
+    "Unique experiences" : {
       "comment" : "OnboardingSlide2",
       "extractionState" : "manual",
       "localizations" : {
