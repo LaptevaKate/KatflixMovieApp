@@ -108,8 +108,8 @@
 			children = (
 				5ECEE8022B7B6A9000C20A77 /* Onboarding.storyboard */,
 				5ECEE8002B7B6A9000C20A77 /* OnboardingViewController.swift */,
-				5E4DF4F82B84B36600C1E03D /* OnboardingCollectionViewCell.swift */,
 				5E4DF50B2B8641C000C1E03D /* OnboardingViewModel.swift */,
+				5E4DF4F82B84B36600C1E03D /* OnboardingCollectionViewCell.swift */,
 				5E9DD2E52B96064B00DDC212 /* OnboardingModel */,
 			);
 			path = Onboarding;

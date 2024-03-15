@@ -15,6 +15,7 @@ class FavoriteMoviesViewModel {
     weak var delegate: FavoritesViewModelDelegate?
     var diffableDataSource : UITableViewDiffableDataSource<Section, RealmMovieModel>!
     let realm = try! Realm()
+    let poster = UIImageView()
     var favoriteMovies: [RealmMovieModel] = []
     init() {
         let realmData = realm.objects(RealmMovieModel.self)
@@ -44,6 +45,7 @@ class FavoriteMoviesViewModel {
             }))
         return alert
     }
+
 }
 extension FavoriteMoviesViewModel : DetailMoviesDelegate {
     func updateRealmDataBase() {

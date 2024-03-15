@@ -32,8 +32,9 @@ extension SearchMoviesViewController: UITableViewDelegate {
     }
     private func configureTableView() {
         searchViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: searchTableView, cellProvider: { tableView, indexPath, itemIdentifier in
-            let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchMovieCustomCell
+            let cell = self.searchTableView.dequeueReusableCell(forIndexPath: indexPath) as SearchMovieCustomCell
             cell.backgroundColor = .black
+            
             if itemIdentifier.title != nil {
                 cell.titleLabel.text = itemIdentifier.title
             } else {
@@ -76,19 +77,15 @@ extension SearchMoviesViewController: UITableViewDelegate {
         })
         searchTableView.rowHeight = 130
         searchTableView.delegate = self
-        searchTableView.register(SearchMovieCustomCell.self, forCellReuseIdentifier: "searchCell")
+        searchTableView.register(SearchMovieCustomCell.self)
         searchTableView.frame = view.bounds
         searchTableView.translatesAutoresizingMaskIntoConstraints = false
         searchTableView.backgroundColor = .black
         view.addSubview(searchTableView)
     }
 }
-extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        self.searchQuery = searchController.searchBar.text ?? ""
-    }
-    
+
+extension SearchMoviesViewController:  UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("didEndEditing")
     }
@@ -97,12 +94,18 @@ extension SearchMoviesViewController: UISearchResultsUpdating, UISearchBarDelega
         print("buttonClicked")
         searchViewModel.getSearchResults(query: searchQuery ?? "", page: 1)
     }
+}
+
+extension SearchMoviesViewController: UISearchResultsUpdating {
     
+    func updateSearchResults(for searchController: UISearchController) {
+        self.searchQuery = searchController.searchBar.text ?? ""
+    }
     private func configureSearchController() {
         searchViewModel.searchController.searchResultsUpdater = self
         searchViewModel.searchController.obscuresBackgroundDuringPresentation = false
         searchViewModel.searchController.searchBar.enablesReturnKeyAutomatically = true
-        searchViewModel.searchController.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(string: "Search Movies", attributes: [NSAttributedString.Key.foregroundColor:UIColor.systemGray3])
+        searchViewModel.searchController.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(string: "Search Movies", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
         navigationItem.searchController = searchViewModel.searchController
         definesPresentationContext = true
         searchViewModel.searchController.searchBar.autocapitalizationType = .none

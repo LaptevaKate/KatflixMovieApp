@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RealmSwift
+
 
 protocol FavoritesVCDelegate: AnyObject {
     func isAlreadyInFavorites(id: Int) -> Bool
@@ -33,7 +33,7 @@ class FavoriteMoviesViewController: UIViewController,FavoritesViewModelDelegate 
 extension FavoriteMoviesViewController: UITableViewDelegate {
     private func configureTableview() {
         favoritesViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: favoritesTableView, cellProvider: { tableView, indexPath, itemIdentifier in
-            let cell = self.favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoriteMovieCustomCell
+            let cell = self.favoritesTableView.dequeueReusableCell(forIndexPath: indexPath) as FavoriteMovieCustomCell
             cell.backgroundColor = .black
             cell.id = itemIdentifier.id
             cell.titleLabel.text = itemIdentifier.title
@@ -42,7 +42,7 @@ extension FavoriteMoviesViewController: UITableViewDelegate {
         })
         
         favoritesTableView.delegate = self
-        favoritesTableView.register(FavoriteMovieCustomCell.self, forCellReuseIdentifier: "favoritesCell")
+        favoritesTableView.register(FavoriteMovieCustomCell.self)
         favoritesTableView.frame = view.bounds
         favoritesTableView.translatesAutoresizingMaskIntoConstraints = false
         favoritesTableView.rowHeight = 110

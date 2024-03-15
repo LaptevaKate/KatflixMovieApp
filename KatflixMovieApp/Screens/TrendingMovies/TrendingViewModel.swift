@@ -5,8 +5,8 @@
 //  Created by Екатерина Лаптева on 28.02.24.
 //
 
-import Foundation
 import UIKit
+import RealmSwift
 
 protocol TrendingViewModelDelegate: AnyObject {
     func didFetchMovieDetails()
@@ -14,9 +14,11 @@ protocol TrendingViewModelDelegate: AnyObject {
 
 final class TrendingViewModel {
     
+    let realm = try! Realm()
     weak var delegate: TrendingViewModelDelegate?
     
     var trendingMovies: [MovieModel] = []
+    
     var diffableDataSource : UITableViewDiffableDataSource<Section, MovieModel>!
     
     func voteAverageColorCheck(voteAverage: Double) -> UIColor {
@@ -70,5 +72,13 @@ final class TrendingViewModel {
         snapshot.reloadItems(self.trendingMovies)
         diffableDataSource.applySnapshotUsingReloadData(snapshot)
         print("refreshing diff db")
+    }
+    
+    func isAlreadyInFavorites(id: Int) -> Bool {
+        return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) == nil
+    }
+
+    func checkFavorite(id: Int) -> Bool {
+        return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) != nil
     }
 }

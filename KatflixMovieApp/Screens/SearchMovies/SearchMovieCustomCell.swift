@@ -96,7 +96,7 @@ class SearchMovieCustomCell: UITableViewCell {
             alreadyFavoritedButton.bottomAnchor.constraint(equalTo: poster.bottomAnchor, constant: 0)
         ])
     }
-
+    
     func getPosterFromURL(posterPath: String) {
         NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
             DispatchQueue.main.async {

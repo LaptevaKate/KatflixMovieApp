@@ -34,7 +34,6 @@ class DetailMoviesViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        
         movieDetailViewModel.delegate = self
         movieDetailView.delegate = self
         setViewProperties()
@@ -57,8 +56,14 @@ class DetailMoviesViewController: UIViewController {
     
     private func presentAlert() {
         let alert = UIAlertController(title: "Success", message: "Movie Was Added To Favorites!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.pushViewController(FavoriteMoviesViewController().self, animated: true)
+            }
+        })
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

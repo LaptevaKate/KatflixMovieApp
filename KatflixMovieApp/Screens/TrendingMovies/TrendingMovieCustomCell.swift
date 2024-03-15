@@ -11,12 +11,15 @@ import RealmSwift
 class TrendingMovieCustomCell: UITableViewCell {
     
     let realm = try! Realm()
+    
     let titleLabel = UILabel()
     let mediaLabel = UILabel()
     let poster = UIImageView()
     let alreadyFavoritedButton = UIButton()
     var voteAverage = UIButton()
     var isAlreadyInFavorites: Bool = true
+    var updateImage: ((UIImage) -> Void)?
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +30,7 @@ class TrendingMovieCustomCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .systemBackground
-        configSubviews()
+        configureSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +43,22 @@ class TrendingMovieCustomCell: UITableViewCell {
         poster.image = nil
     }
     
-    private func configSubviews() {
+    func configureCell(with model: MovieModel) {
+        titleLabel.text = model.title
+        mediaLabel.text = model.mediaType?.rawValue
+        voteAverage.setTitle(" \(String(model.voteAverage!)) ", for: .normal)
+        getPosterFromURL(posterPath: model.posterPath!)
+    }
+    
+    func getPosterFromURL(posterPath: String) {
+        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
+            DispatchQueue.main.async {
+                self.poster.image = image
+            }
+        }
+    }
+
+    private func configureSubviews() {
         let subviews = [titleLabel, poster, mediaLabel, voteAverage, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
@@ -98,17 +116,6 @@ class TrendingMovieCustomCell: UITableViewCell {
             alreadyFavoritedButton.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
             alreadyFavoritedButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
         ])
-    }
-    
-    func getPosterFromURL(posterPath: String) {
-        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
-            DispatchQueue.main.async {
-                self.poster.image = image
-            }
-        }
-    }
-    func checkFavorite(id: Int) -> Bool {
-        return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) != nil
     }
 }
 extension TrendingMovieCustomCell: DetailMoviesDelegate {

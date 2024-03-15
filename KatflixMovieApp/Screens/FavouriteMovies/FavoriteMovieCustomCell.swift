@@ -13,6 +13,7 @@ final class FavoriteMovieCustomCell: UITableViewCell {
     var id: Int = -1
     let titleLabel = UILabel()
     let poster = UIImageView()
+   
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +26,7 @@ final class FavoriteMovieCustomCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configSubviews()
+        configureSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +37,12 @@ final class FavoriteMovieCustomCell: UITableViewCell {
         poster.image = nil
     }
     
-    private func configSubviews() {
+    func configureCell(with model: RealmMovieModel) {
+        id = model.id
+        titleLabel.text = model.title
+    }
+
+    private func configureSubviews() {
         let subviews = [titleLabel, poster]
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }

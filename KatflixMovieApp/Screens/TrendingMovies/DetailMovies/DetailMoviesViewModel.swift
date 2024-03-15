@@ -5,7 +5,6 @@
 //  Created by Екатерина Лаптева on 29.02.24.
 //
 
-import Foundation
 import UIKit
 import RealmSwift
 
@@ -33,7 +32,6 @@ class DetailMoviesViewModel {
             print("Name: \(movie.title) ID: \(movie.id) || Added to realm")
         })
         self.delegate?.updateRealmDataBase()
-        
     }
     
 }
