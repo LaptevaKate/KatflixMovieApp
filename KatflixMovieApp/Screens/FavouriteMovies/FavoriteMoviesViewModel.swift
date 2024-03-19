@@ -30,17 +30,21 @@ final class FavoriteMoviesViewModel {
     }
     
     func didTapFavoriteCell(tappedCell: FavoriteMovieCustomCell, indexPath: IndexPath) -> UIAlertController {
-        
-        let alert = UIAlertController(title: "Remove from Favorites", message: "\(tappedCell.titleLabel.text!) will be deleted from your Favorites. Are you sure?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: {(alert: UIAlertAction!) in
+        let alert = UIAlertController(title: NSLocalizedString("alertTitleFavoriteVM", comment: ""),
+                                      message: NSLocalizedString("alertMessageFavoriteVM", comment: "") + tappedCell.titleLabel.text! + "?",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancelTitleFavoriteVM", comment: ""),
+                                      style: .cancel,
+                                      handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("removeTitleFavoriteVM", comment: ""), 
+                                      style: .destructive,
+                                      handler: {(alert: UIAlertAction!) in
             var snapshot = self.diffableDataSource.snapshot()
             if let item = self.diffableDataSource.itemIdentifier(for: indexPath) {
                     snapshot.deleteItems([item])
                 self.diffableDataSource.apply(snapshot)
                 }
             let itemToRemove = self.realm.object(ofType: RealmMovieModel.self, forPrimaryKey: tappedCell.id)
-
             try! self.realm.write({ self.realm.delete(itemToRemove!) })
             }))
         return alert

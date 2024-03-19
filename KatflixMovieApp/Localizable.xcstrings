@@ -1,82 +1,193 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Amazing graphics" : {
-      "comment" : "OnboardingSlide3",
-      "extractionState" : "manual",
+    "addToFavoritesButtonDetailV" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add To Favorites"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Потрясающая графика"
+            "value" : "Вы хотите удалить из Любимых"
           }
         }
       }
     },
-    "An exciting storyline will take you into a fantasy world or help you experience all the variety of real storylines" : {
+    "alertMessageDetailVC" : {
+      "comment" : "Detail VC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's Watch Later"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отложим просмотр на позже"
+          }
+        }
+      }
+    },
+    "alertMessageFavoriteVM" : {
+      "comment" : "FavoriteViewModel",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do You want to delete "
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удаляем"
+          }
+        }
+      }
+    },
+    "alertOKDetailVC" : {
+      "comment" : "DetailVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Окей"
+          }
+        }
+      }
+    },
+    "alertTitleDetailVC" : {
+      "comment" : "DetailVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавлено"
+          }
+        }
+      }
+    },
+    "alertTitleFavoriteVM" : {
+      "comment" : "FavoriteViewModel",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from Favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить "
+          }
+        }
+      }
+    },
+    "btnTitleTrendingCell" : {
+      "comment" : "Trending Movie Custom Cell / Search Movie Custom Cell",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Любимые"
+          }
+        }
+      }
+    },
+    "cancelTitleFavoriteVM" : {
+      "comment" : "Favourite View Model",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "ddToFavoritesButtonDetailV" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add To Favorites"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В Любимых"
+          }
+        }
+      }
+    },
+    "descriptionSlide1" : {
       "comment" : "OnboardingSlide1",
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An exciting storyline will take you into a fantasy world or help you experience all the variety of real storylines"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Захватывающий сюжет перенесет Вас в мир фантазий или поможет прочувствовать всё разнообразие реальных сюжетных линий"
+            "value" : "Захватывающая сюжетная линия перенесет вас в мир фантазий или поможет прочувствовать все разнообразие реальных сюжетных линий"
           }
         }
       }
     },
-    "Get Started" : {
-      "comment" : "Onboarding Button yo MainVC",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Приступаем"
-          }
-        }
-      }
-    },
-    "Immerse yourself in a world filled with picturesque illustrations, or in everyday life with qualitatively drawn locations and characters" : {
-      "comment" : "OnboardingSlide3",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Окунитесь в мир, наполненный живописными иллюстрациями, или  в повседневную жизнь с качественно прорисованными локациями и персонажами"
-          }
-        }
-      }
-    },
-    "Incredible emotions" : {
-      "comment" : "OnboardingSlide1",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невероятные эмоции"
-          }
-        }
-      }
-    },
-    "Next" : {
-      "comment" : "Onboarding Button to Slide",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Далее"
-          }
-        }
-      }
-    },
-    "The combination of colorful images and high-quality sound will give you a unique experience" : {
+    "descriptionSlide2" : {
       "comment" : "OnboardingSlide2",
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The combination of colorful images and high-quality sound will give you a unique experience"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -85,14 +196,218 @@
         }
       }
     },
-    "Unique experiences" : {
+    "descriptionSlide3" : {
+      "comment" : "OnboardingSlide3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Immerse yourself in a world filled with picturesque illustrations, or in everyday life with qualitatively drawn locations and characters"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Окунитесь в мир, наполненный живописными иллюстрациями, или  в повседневную жизнь с качественно прорисованными локациями и персонажами"
+          }
+        }
+      }
+    },
+    "favoritesVCTitle" : {
+      "comment" : "TabBarVC FavoriteVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Movies"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Любимые фильмы"
+          }
+        }
+      }
+    },
+    "getStartedOnboarding" : {
+      "comment" : "Onboarding Button yo MainVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Started"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приступаем"
+          }
+        }
+      }
+    },
+    "nextButtonOnboarding" : {
+      "comment" : "Onboarding Button to Slide",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Далее"
+          }
+        }
+      }
+    },
+    "releaseDateTextDetailVC" : {
+      "comment" : "Detail VC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Release Date: "
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Премьера:"
+          }
+        }
+      }
+    },
+    "removeTitleFavoriteVM" : {
+      "comment" : "FavoriteViewModel",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "scoreTextDetailVC" : {
+      "comment" : "DetailVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score: "
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рейтинг:"
+          }
+        }
+      }
+    },
+    "searchVCTitle" : {
+      "comment" : "TabBarVC SearchVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search the Movie"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск Фильма"
+          }
+        }
+      }
+    },
+    "titleSlide1" : {
+      "comment" : "OnboardingSlide1",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incredible emotions"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невероятные эмоции"
+          }
+        }
+      }
+    },
+    "titleSlide2" : {
       "comment" : "OnboardingSlide2",
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unique experiences"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Уникальные впечатления"
+          }
+        }
+      }
+    },
+    "titleSlide3" : {
+      "comment" : "OnboardingSlide3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amazing graphics"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрясающая графика"
+          }
+        }
+      }
+    },
+    "trendingVCTitle" : {
+      "comment" : "TabBarVC TrendingVC",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trending Movies"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Популярные фильмы"
           }
         }
       }

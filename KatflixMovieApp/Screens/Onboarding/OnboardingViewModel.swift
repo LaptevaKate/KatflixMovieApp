@@ -12,14 +12,14 @@ final class OnboardingViewModel {
     var currentPage = 0 
 
     let slides = [
-        OnboardingSlide(title: OnboardingSlidesLocalization.titleSlide1.string,
-                        description: OnboardingSlidesLocalization.descriptionSlide1.string,
+        OnboardingSlide(title: NSLocalizedString("titleSlide1", comment: ""),
+                        description: NSLocalizedString("descriptionSlide1", comment: ""),
                         image: UIImage(named: "Slide1")),
-        OnboardingSlide(title: OnboardingSlidesLocalization.titleSlide2.string,
-                        description: OnboardingSlidesLocalization.descriptionSlide2.string,
+        OnboardingSlide(title: NSLocalizedString("titleSlide2", comment: ""),
+                        description: NSLocalizedString("descriptionSlide2", comment: ""),
                         image: UIImage(named: "Slide2")),
-        OnboardingSlide(title: OnboardingSlidesLocalization.titleSlide3.string,
-                        description: OnboardingSlidesLocalization.descriptionSlide3.string,
+        OnboardingSlide(title: NSLocalizedString("titleSlide3", comment: ""),
+                        description: NSLocalizedString("descriptionSlide3", comment: " "),
                         image: UIImage(named: "Slide3"))]
     
     var isLastSlide: Bool {

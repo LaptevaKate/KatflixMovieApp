@@ -42,7 +42,7 @@ class SearchMoviesViewModel {
         if let title = item.title {
             cell.titleLabel.text = title
         } else {
-            cell.titleLabel.text = "Not Found"
+            cell.titleLabel.text = NetworkError.noData.errorDescription
         }
     }
     func getPosterForItem(item: MovieModel, cell: SearchMovieCustomCell) {
@@ -56,14 +56,14 @@ class SearchMoviesViewModel {
         if let releaseDate = item.releaseDate {
             cell.releaseDate.text = "\(releaseDate.components(separatedBy: "-")[0])"
         } else {
-            cell.releaseDate.text = "Unknown Date"
+            cell.releaseDate.text = NetworkError.noData.errorDescription
         }
     }
     func displayVoteAverage(item: MovieModel, cell: SearchMovieCustomCell) {
         if let voteAverage = item.voteAverage {
             cell.voteAverage.text = String(voteAverage)
         } else {
-            cell.voteAverage.text = "?.?"
+            cell.voteAverage.text = NetworkError.noData.errorDescription
         }
     }
     

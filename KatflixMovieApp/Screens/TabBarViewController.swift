@@ -11,8 +11,8 @@ final class TabBarViewController: UIViewController {
     
     static func createTrendingNavigationController() -> UINavigationController {
         let trendingVC = TrendingMoviesViewController()
-        trendingVC.title = "Trending Movies"
-        trendingVC.tabBarItem = UITabBarItem(title: "Trending Movies", image: UIImage(systemName: "film.fill") , tag: 0)
+        trendingVC.title = NSLocalizedString("trendingVCTitle", comment: "")
+        trendingVC.tabBarItem = UITabBarItem(title: trendingVC.title, image: UIImage(systemName: "film.fill") , tag: 0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red]
         UINavigationBar.appearance().backgroundColor = .black
         return UINavigationController(rootViewController: trendingVC)
@@ -20,8 +20,8 @@ final class TabBarViewController: UIViewController {
     
     static func createFavoritesNavigationController() -> UINavigationController {
         let favoritesVC = FavoriteMoviesViewController()
-        favoritesVC.title = "Favorite Movies"
-        favoritesVC.tabBarItem = UITabBarItem(title: "Favorite Movies", image: UIImage(systemName: "heart.fill") , tag: 0)
+        favoritesVC.title = NSLocalizedString("favoritesVCTitle", comment: "")
+        favoritesVC.tabBarItem = UITabBarItem(title: favoritesVC.title, image: UIImage(systemName: "heart.fill") , tag: 0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red]
         UINavigationBar.appearance().backgroundColor = .black
         return UINavigationController(rootViewController: favoritesVC)
@@ -29,8 +29,8 @@ final class TabBarViewController: UIViewController {
     
     static func createSearchNavigationController() -> UINavigationController {
         let searchVC = SearchMoviesViewController()
-        searchVC.title = "Search the Movie"
-        searchVC.tabBarItem = UITabBarItem(title: "Search the Movie", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+        searchVC.title = NSLocalizedString("searchVCTitle", comment: "")
+        searchVC.tabBarItem = UITabBarItem(title: searchVC.title, image: UIImage(systemName: "magnifyingglass"), tag: 0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red]
         UINavigationBar.appearance().backgroundColor = .black
         return UINavigationController(rootViewController: searchVC)

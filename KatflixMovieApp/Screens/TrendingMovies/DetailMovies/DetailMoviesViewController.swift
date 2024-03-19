@@ -47,16 +47,20 @@ final class DetailMoviesViewController: UIViewController {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
         movieDetailView.overview.text = movieDetailViewModel.movie.overview
         guard let movieVote = movieDetailViewModel.movie.voteAverage else {return }
-        movieDetailView.voteAverage.text = "Score: \(String(movieVote))"
+        movieDetailView.voteAverage.text = NSLocalizedString("scoreTextDetailVC", comment: "") + String(movieVote)
         guard let movieReleaseDate = movieDetailViewModel.movie.releaseDate else {return }
-        movieDetailView.releaseDate.text = "Release Date: \(movieReleaseDate)"
+        movieDetailView.releaseDate.text = NSLocalizedString("releaseDateTextDetailVC", comment: "") + movieReleaseDate
         guard let movieBackdropPath = movieDetailViewModel.movie.backdropPath else {return }
         movieDetailViewModel.getBackdropFromURL(backdropPath: movieBackdropPath, backdropView: movieDetailView.backdropImage)
     }
     
     private func presentAlert() {
-        let alert = UIAlertController(title: "Added", message: "Let's Watch Later", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("alertTitleDetailVC", comment: ""),
+                                      message: NSLocalizedString("alertMessageDetailVC", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alertOKDetailVC", comment: ""), 
+                                      style: UIAlertAction.Style.default,
+                                      handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

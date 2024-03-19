@@ -20,10 +20,6 @@ final class TrendingMoviesViewController: UIViewController {
         applyChangesToSnapshot()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       
-    }
-    
     func applyChangesToSnapshot() {
         var snapshot = trendingViewModel.diffableDataSource.snapshot()
         snapshot.reloadItems(self.trendingViewModel.trendingMovies)

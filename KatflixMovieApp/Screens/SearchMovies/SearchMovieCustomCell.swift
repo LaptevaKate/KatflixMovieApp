@@ -40,7 +40,13 @@ class SearchMovieCustomCell: UITableViewCell {
         releaseDate.text = nil
         voteAverage.text = nil
     }
-
+    func getPosterFromURL(posterPath: String) {
+        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
+            DispatchQueue.main.async {
+                self.poster.image = image
+            }
+        }
+    }
     private func configSubviews() {
         let subviews = [titleLabel, releaseDate, poster, voteAverage, voteSymbol, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
@@ -64,7 +70,7 @@ class SearchMovieCustomCell: UITableViewCell {
         btnConfig.baseForegroundColor = UIColor.systemPink
         btnConfig.buttonSize = .mini
         btnConfig.contentInsets = .zero
-        btnConfig.title = "On your list!"
+        btnConfig.title = NSLocalizedString("btnTitleTrendingCell", comment: "")
         alreadyFavoritedButton.configuration = btnConfig
         
         let padding: CGFloat = 10
@@ -95,13 +101,5 @@ class SearchMovieCustomCell: UITableViewCell {
             alreadyFavoritedButton.trailingAnchor.constraint(equalTo: voteSymbol.leadingAnchor, constant: -padding),
             alreadyFavoritedButton.bottomAnchor.constraint(equalTo: poster.bottomAnchor, constant: 0)
         ])
-    }
-    
-    func getPosterFromURL(posterPath: String) {
-        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
-            DispatchQueue.main.async {
-                self.poster.image = image
-            }
-        }
     }
 }
