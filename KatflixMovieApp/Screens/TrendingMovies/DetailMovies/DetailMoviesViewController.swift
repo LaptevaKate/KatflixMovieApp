@@ -55,7 +55,7 @@ final class DetailMoviesViewController: UIViewController {
     }
     
     private func presentAlert() {
-        let alert = UIAlertController(title: "Success", message: "Movie Was Added To Favorites!", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Added", message: "Let's Watch Later", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

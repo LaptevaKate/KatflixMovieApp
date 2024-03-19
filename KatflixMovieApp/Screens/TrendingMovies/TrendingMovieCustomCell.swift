@@ -84,7 +84,7 @@ final class TrendingMovieCustomCell: UITableViewCell {
         btnConfig.cornerStyle = .capsule
         btnConfig.baseBackgroundColor = .white
         btnConfig.baseForegroundColor = .red
-        btnConfig.title = "Added to Favorites"
+        btnConfig.title = "In Favorites"
         btnConfig.attributedTitle?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         btnConfig.buttonSize = .mini
         alreadyFavoritedButton.configuration = btnConfig

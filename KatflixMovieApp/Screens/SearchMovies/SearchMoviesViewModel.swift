@@ -16,6 +16,7 @@ class SearchMoviesViewModel {
     
     var tableCell = SearchMovieCustomCell()
     var searchController = UISearchController(searchResultsController: nil)
+    var updatePosterImage: ((UIImage) -> Void)?
     
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, MovieModel>()
@@ -84,5 +85,4 @@ class SearchMoviesViewModel {
             cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
         }
     }
-    
 }

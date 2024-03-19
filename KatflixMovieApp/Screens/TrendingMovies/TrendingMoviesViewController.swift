@@ -17,10 +17,11 @@ final class TrendingMoviesViewController: UIViewController {
         trendingViewModel.delegate = self
         trendingViewModel.getTrendingMovies()
         configureTableview()
+        applyChangesToSnapshot()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        applyChangesToSnapshot()
+       
     }
     
     func applyChangesToSnapshot() {
@@ -63,8 +64,4 @@ extension TrendingMoviesViewController: TrendingViewModelDelegate {
     func didFetchMovieDetails() {
     }
 }
-//extension TrendingMoviesViewController: FavoritesVCDelegate {
-//    func isAlreadyInFavorites(id: Int) -> Bool {
-//        return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) == nil
-//    }
-//}
+
