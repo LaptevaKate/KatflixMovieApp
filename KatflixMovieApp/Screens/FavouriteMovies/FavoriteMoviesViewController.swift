@@ -12,7 +12,7 @@ protocol FavoritesVCDelegate: AnyObject {
     func isAlreadyInFavorites(id: Int) -> Bool
 }
 
-class FavoriteMoviesViewController: UIViewController,FavoritesViewModelDelegate {
+final class FavoriteMoviesViewController: UIViewController, FavoritesViewModelDelegate {
     
     let favoritesTableView = UITableView()
     
@@ -35,9 +35,7 @@ extension FavoriteMoviesViewController: UITableViewDelegate {
         favoritesViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: favoritesTableView, cellProvider: { tableView, indexPath, itemIdentifier in
             let cell = self.favoritesTableView.dequeueReusableCell(forIndexPath: indexPath) as FavoriteMovieCustomCell
             cell.backgroundColor = .black
-            cell.id = itemIdentifier.id
-            cell.titleLabel.text = itemIdentifier.title
-            cell.getPosterFromURL(posterPath: itemIdentifier.poster)
+            cell.configureCell(with: itemIdentifier)
             return cell
         })
         

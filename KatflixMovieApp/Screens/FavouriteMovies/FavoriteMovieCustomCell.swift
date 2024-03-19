@@ -13,8 +13,8 @@ final class FavoriteMovieCustomCell: UITableViewCell {
     var id: Int = -1
     let titleLabel = UILabel()
     let poster = UIImageView()
+    let viewModel = FavoriteMoviesViewModel()
    
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -40,6 +40,11 @@ final class FavoriteMovieCustomCell: UITableViewCell {
     func configureCell(with model: RealmMovieModel) {
         id = model.id
         titleLabel.text = model.title
+        viewModel.getPosterFromURL(posterPath: model.poster) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.poster.image = image
+            }
+        }
     }
 
     private func configureSubviews() {
@@ -62,13 +67,5 @@ final class FavoriteMovieCustomCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
         ])
-    }
-    
-    func getPosterFromURL(posterPath: String) {
-        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
-            DispatchQueue.main.async {
-                self.poster.image = image
-            }
-        }
     }
 }

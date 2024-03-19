@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmMovieModel: Object {
+final class RealmMovieModel: Object {
     @Persisted var id: Int
     @Persisted var title: String
     @Persisted var poster: String

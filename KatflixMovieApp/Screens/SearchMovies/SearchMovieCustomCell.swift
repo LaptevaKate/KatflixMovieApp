@@ -46,7 +46,7 @@ class SearchMovieCustomCell: UITableViewCell {
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         titleLabel.numberOfLines = 2
         titleLabel.lineBreakStrategy = .standard
         titleLabel.textColor = .white

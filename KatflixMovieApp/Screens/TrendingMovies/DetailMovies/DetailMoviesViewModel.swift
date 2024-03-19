@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class DetailMoviesViewModel {
+final class DetailMoviesViewModel {
     
     let realm = try! Realm()
     weak var delegate: DetailMoviesDelegate?
@@ -25,14 +25,13 @@ class DetailMoviesViewModel {
     func didTapAddToFavorites() {
         try! realm.write({
             let movie = RealmMovieModel()
-            movie.title = self.movie.title!
+            movie.title = self.movie.title ?? " "
             movie.id = self.movie.id
-            movie.poster = self.movie.posterPath!
+            movie.poster = self.movie.posterPath ?? " "
             realm.add(movie, update: .modified)
             print("Name: \(movie.title) ID: \(movie.id) || Added to realm")
         })
         self.delegate?.updateRealmDataBase()
     }
-    
 }
 

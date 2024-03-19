@@ -13,7 +13,7 @@ class SearchMoviesViewModel {
     let realm = try! Realm()
     var searchResults: [MovieModel] = []
     var diffableDataSource : UITableViewDiffableDataSource<Section, MovieModel>!
-   
+    
     var tableCell = SearchMovieCustomCell()
     var searchController = UISearchController(searchResultsController: nil)
     
@@ -36,62 +36,53 @@ class SearchMoviesViewModel {
                 print(error)
             }
         }
-    }   
+    }
+    func getTitleForItem(item: MovieModel, cell: SearchMovieCustomCell) {
+        if let title = item.title {
+            cell.titleLabel.text = title
+        } else {
+            cell.titleLabel.text = "Not Found"
+        }
+    }
+    func getPosterForItem(item: MovieModel, cell: SearchMovieCustomCell) {
+        if let posterPath = item.posterPath {
+            cell.getPosterFromURL(posterPath: posterPath)
+        } else {
+            cell.poster.image = UIImage(named: "poster-placeholder")
+        }
+    }
+    func formatReleaseDate(item: MovieModel, cell: SearchMovieCustomCell) {
+        if let releaseDate = item.releaseDate {
+            cell.releaseDate.text = "\(releaseDate.components(separatedBy: "-")[0])"
+        } else {
+            cell.releaseDate.text = "Unknown Date"
+        }
+    }
+    func displayVoteAverage(item: MovieModel, cell: SearchMovieCustomCell) {
+        if let voteAverage = item.voteAverage {
+            cell.voteAverage.text = String(voteAverage)
+        } else {
+            cell.voteAverage.text = "?.?"
+        }
+    }
     
-
-
-//    func makeMovieModel(with model: MovieModel) -> MovieModel {
-//        if model.title != nil {
-//            let title = model.title
-//        } else {
-//            let title  = "Not Found"
-//        }
-//        
-//        if model.posterPath != nil {
-//            getPosterFromURL(posterPath: model.posterPath!)
-//        } else {
-//            let poster = UIImage(named: "poster-placeholder")
-//        }
-//       
-//        if model.releaseDate != nil {
-//            let releaseDate = "\(model.releaseDate!.components(separatedBy: "-")[0])"
-//        } else {
-//            let releaseDate = "Unknown Date"
-//        }
-//      
-//        if model.voteAverage != nil {
-//            let voteAverage = String(model.voteAverage!)
-//        } else {
-//            let voteAverage = "?.?"
-//        }
-//    
-//        if (self.realm.object(ofType: RealmMovieModel.self, forPrimaryKey: model.id) == nil) {
-//            tableCell.alreadyFavoritedButton.isHidden = true
-//        } else {
-//            tableCell.alreadyFavoritedButton.isHidden = false
-//        }
-//        if model.voteAverage! < 4.0 {
-//            let voteSymbol = UIImage(systemName: "heart.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-//        } else if model.voteAverage! < 7.0 {
-//            let voteSymbol = UIImage(systemName: "heart.square")?.withTintColor(.systemOrange, renderingMode: .alwaysOriginal)
-//        } else if model.voteAverage! < 8.0 {
-//            let voteSymbol = UIImage(systemName: "heart.square")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
-//        } else {
-//            let voteSymbol = UIImage(systemName: "heart.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
-//        }
-//       return MovieModel(id: <#T##Int#>,
-//                         title: <#T##String?#>,
-//                         name: <#T##String?#>,
-//                         originalTitle: <#T##String?#>,
-//                         originalName: <#T##String?#>,
-//                         overview: <#T##String#>,
-//                         releaseDate: <#T##String?#>,
-//                         posterPath: <#T##String?#>,
-//                         backdropPath: <#T##String?#>,
-//                         adult: <#T##Bool?#>,
-//                         video: <#T##Bool?#>,
-//                         voteCount: <#T##Int?#>,
-//                         voteAverage: <#T##Double?#>,
-//                         mediaType: <#T##MovieModel.MediaType?#>)
-//    }
+    func checkForFavorite(item: MovieModel, cell: SearchMovieCustomCell){ if (self.realm.object(ofType: RealmMovieModel.self, forPrimaryKey: item.id) == nil) {
+        cell.alreadyFavoritedButton.isHidden = true
+    } else {
+        cell.alreadyFavoritedButton.isHidden = false
+    }
+    }
+    
+    func identifyVoteSymbol(item: MovieModel, cell: SearchMovieCustomCell){
+        if let voteAverage = item.voteAverage, voteAverage < 4.0 {
+            cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+        } else if let voteAverage = item.voteAverage, voteAverage < 7.0 {
+            cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemOrange, renderingMode: .alwaysOriginal)
+        } else if let voteAverage = item.voteAverage, voteAverage < 8.0 {
+            cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+        } else {
+            cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+        }
+    }
+    
 }

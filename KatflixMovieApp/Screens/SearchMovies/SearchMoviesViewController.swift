@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class SearchMoviesViewController: UIViewController {
+final class SearchMoviesViewController: UIViewController {
     
     let realm = try! Realm()
     var searchQuery: String?
@@ -34,45 +34,12 @@ extension SearchMoviesViewController: UITableViewDelegate {
         searchViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: searchTableView, cellProvider: { tableView, indexPath, itemIdentifier in
             let cell = self.searchTableView.dequeueReusableCell(forIndexPath: indexPath) as SearchMovieCustomCell
             cell.backgroundColor = .black
-            
-            if itemIdentifier.title != nil {
-                cell.titleLabel.text = itemIdentifier.title
-            } else {
-                cell.titleLabel.text = "Not Found"
-            }
-            
-            if itemIdentifier.posterPath != nil {
-                cell.getPosterFromURL(posterPath: itemIdentifier.posterPath!)
-            } else {
-                cell.poster.image = UIImage(named: "poster-placeholder")
-            }
-           
-            if itemIdentifier.releaseDate != nil {
-                cell.releaseDate.text = "\(itemIdentifier.releaseDate!.components(separatedBy: "-")[0])"
-            } else {
-                cell.releaseDate.text = "Unknown Date"
-            }
-          
-            if itemIdentifier.voteAverage != nil {
-                cell.voteAverage.text = String(itemIdentifier.voteAverage!)
-            } else {
-                cell.voteAverage.text = "?.?"
-            }
-        
-            if (self.realm.object(ofType: RealmMovieModel.self, forPrimaryKey: itemIdentifier.id) == nil) {
-                cell.alreadyFavoritedButton.isHidden = true
-            } else {
-                cell.alreadyFavoritedButton.isHidden = false
-            }
-            if itemIdentifier.voteAverage! < 4.0 {
-                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-            } else if itemIdentifier.voteAverage! < 7.0 {
-                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemOrange, renderingMode: .alwaysOriginal)
-            } else if itemIdentifier.voteAverage! < 8.0 {
-                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
-            } else {
-                cell.voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
-            }
+            self.searchViewModel.getTitleForItem(item: itemIdentifier, cell: cell)
+            self.searchViewModel.getPosterForItem(item: itemIdentifier, cell: cell)
+            self.searchViewModel.formatReleaseDate(item: itemIdentifier, cell: cell)
+            self.searchViewModel.displayVoteAverage(item: itemIdentifier, cell: cell)
+            self.searchViewModel.checkForFavorite(item: itemIdentifier, cell: cell)
+            self.searchViewModel.identifyVoteSymbol(item: itemIdentifier, cell: cell)
             return cell
         })
         searchTableView.rowHeight = 130
@@ -102,10 +69,11 @@ extension SearchMoviesViewController: UISearchResultsUpdating {
         self.searchQuery = searchController.searchBar.text ?? ""
     }
     private func configureSearchController() {
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         searchViewModel.searchController.searchResultsUpdater = self
         searchViewModel.searchController.obscuresBackgroundDuringPresentation = false
         searchViewModel.searchController.searchBar.enablesReturnKeyAutomatically = true
-        searchViewModel.searchController.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(string: "Search Movies", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
+        searchViewModel.searchController.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(string: "Search Movies", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         navigationItem.searchController = searchViewModel.searchController
         definesPresentationContext = true
         searchViewModel.searchController.searchBar.autocapitalizationType = .none

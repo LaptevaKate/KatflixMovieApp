@@ -74,10 +74,16 @@ final class TrendingViewModel {
         print("refreshing diff db")
     }
     
+    func getPosterFromURL(posterPath: String, completion: @escaping (UIImage?) -> Void) {
+        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
+            completion(image)
+        }
+    }
+    
     func isAlreadyInFavorites(id: Int) -> Bool {
         return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) == nil
     }
-
+    
     func checkFavorite(id: Int) -> Bool {
         return realm.object(ofType: RealmMovieModel.self, forPrimaryKey: id) != nil
     }

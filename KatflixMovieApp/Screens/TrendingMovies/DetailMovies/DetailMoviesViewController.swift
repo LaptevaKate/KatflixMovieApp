@@ -11,7 +11,7 @@ protocol DetailMoviesDelegate : AnyObject {
     func updateRealmDataBase()
 }
 
-class DetailMoviesViewController: UIViewController {
+final class DetailMoviesViewController: UIViewController {
     
     weak var delegate: DetailMoviesDelegate?
     private let movieDetailViewModel = DetailMoviesViewModel()
@@ -56,13 +56,7 @@ class DetailMoviesViewController: UIViewController {
     
     private func presentAlert() {
         let alert = UIAlertController(title: "Success", message: "Movie Was Added To Favorites!", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-                self.navigationController?.pushViewController(FavoriteMoviesViewController().self, animated: true)
-            }
-        })
-        alert.addAction(ok)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
@@ -71,6 +65,7 @@ extension DetailMoviesViewController: DetailMoviesDelegate {
     func updateRealmDataBase() {       
     }
 }
+
 extension DetailMoviesViewController: MovieDetailViewDelegate {
     func didTapFavoriteButton() {
         movieDetailViewModel.didTapAddToFavorites()

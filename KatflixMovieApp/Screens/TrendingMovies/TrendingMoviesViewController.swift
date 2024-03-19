@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingMoviesViewController: UIViewController {
+final class TrendingMoviesViewController: UIViewController {
     
     private let trendingViewModel = TrendingViewModel()
     let trendingTableView = UITableView()

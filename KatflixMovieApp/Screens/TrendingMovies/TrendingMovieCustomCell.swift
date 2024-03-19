@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class TrendingMovieCustomCell: UITableViewCell {
+final class TrendingMovieCustomCell: UITableViewCell {
     
     let realm = try! Realm()
     
@@ -18,9 +18,8 @@ class TrendingMovieCustomCell: UITableViewCell {
     let alreadyFavoritedButton = UIButton()
     var voteAverage = UIButton()
     var isAlreadyInFavorites: Bool = true
-    var updateImage: ((UIImage) -> Void)?
-  
-    
+    let viewModel = TrendingViewModel()
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -47,17 +46,13 @@ class TrendingMovieCustomCell: UITableViewCell {
         titleLabel.text = model.title
         mediaLabel.text = model.mediaType?.rawValue
         voteAverage.setTitle(" \(String(model.voteAverage!)) ", for: .normal)
-        getPosterFromURL(posterPath: model.posterPath!)
-    }
-    
-    func getPosterFromURL(posterPath: String) {
-        NetworkManager.shared.getPosterImage(posterPath: posterPath) { image in
+        viewModel.getPosterFromURL(posterPath: model.posterPath!) { [weak self] image in
             DispatchQueue.main.async {
-                self.poster.image = image
+                self?.poster.image = image
             }
         }
     }
-
+    
     private func configureSubviews() {
         let subviews = [titleLabel, poster, mediaLabel, voteAverage, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
