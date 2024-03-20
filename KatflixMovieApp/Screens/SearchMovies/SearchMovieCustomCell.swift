@@ -8,32 +8,28 @@
 import Foundation
 import UIKit
 
-class SearchMovieCustomCell: UITableViewCell {
-    
+final class SearchMovieCustomCell: UITableViewCell {
+    // MARK: properties
     var titleLabel = UILabel()
     var releaseDate = UILabel()
     var poster = UIImageView()
     var voteAverage = UILabel()
     let voteSymbol = UIImageView()
     let alreadyFavoritedButton = UIButton()
-
+    // MARK: methods
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configSubviews()
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     override func prepareForReuse() {
         poster.image = nil
         titleLabel.text = nil
@@ -47,23 +43,24 @@ class SearchMovieCustomCell: UITableViewCell {
             }
         }
     }
+    // MARK: private methods
     private func configSubviews() {
         let subviews = [titleLabel, releaseDate, poster, voteAverage, voteSymbol, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        titleLabel.font = .customFont(font: .textFont2, size: .medium)
         titleLabel.numberOfLines = 2
         titleLabel.lineBreakStrategy = .standard
         titleLabel.textColor = .white
         
         poster.contentMode = .scaleAspectFill
         
-        releaseDate.font = UIFont.italicSystemFont(ofSize: 14)
+        releaseDate.font = .customFont(font: .textFont1, size: .small)
         releaseDate.textColor = .white
         
         voteSymbol.image = UIImage(systemName: "heart.square")?.withTintColor(.systemGray2, renderingMode: .alwaysOriginal)
-        voteAverage.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        voteAverage.font = .customFont(font: .textFont1, size: .medium)
         
         var btnConfig = UIButton.Configuration.gray()
         btnConfig.cornerStyle = .capsule

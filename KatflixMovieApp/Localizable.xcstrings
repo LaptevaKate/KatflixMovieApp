@@ -12,7 +12,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вы хотите удалить из Любимых"
+            "value" : "Добавим в Любимые"
           }
         }
       }
@@ -48,7 +48,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Удаляем"
+            "value" : "Удаляем "
           }
         }
       }
@@ -227,7 +227,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Любимые фильмы"
+            "value" : "Любимые "
           }
         }
       }
@@ -335,7 +335,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поиск Фильма"
+            "value" : "Поиск "
           }
         }
       }
@@ -407,7 +407,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Популярные фильмы"
+            "value" : "Популярные"
           }
         }
       }

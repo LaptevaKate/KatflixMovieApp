@@ -13,23 +13,22 @@ protocol FavoritesVCDelegate: AnyObject {
 }
 
 final class FavoriteMoviesViewController: UIViewController, FavoritesViewModelDelegate {
-    
-    let favoritesTableView = UITableView()
-    
-    weak var delegate: FavoritesVCDelegate?
+    // MARK: private properties
+    private let favoritesTableView = UITableView()
+    private weak var delegate: FavoritesVCDelegate?
     private let favoritesViewModel = FavoriteMoviesViewModel()
-        
+    // MARK: VC Lifecycle - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesViewModel.delegate = self
         configureTableview()
     }
-    
+    // MARK: VC Lifecycle - viewWillAppear()
     override func viewWillAppear(_ animated: Bool) {
         favoritesViewModel.updateRealmDataBase()
     }
 }
-
+// MARK: - extension -  UITableViewDelegate
 extension FavoriteMoviesViewController: UITableViewDelegate {
     private func configureTableview() {
         favoritesViewModel.diffableDataSource = UITableViewDiffableDataSource(tableView: favoritesTableView, cellProvider: { tableView, indexPath, itemIdentifier in

@@ -16,14 +16,11 @@ enum OnboardingSlidesLocalization {
     static let descriptionSlide3 = "Immerse yourself in a world filled with picturesque illustrations, or in everyday life with qualitatively drawn locations and characters"
     static let nextButtonOnboarding = "Next"
     static let getStartedOnboarding = "Get Started"
-    
 }
-
 enum TrendingMoviesLocalization {
     static let trendingVCTitle = "Trending Movies"
     static let btnTitleTrendingCell = "In Favorites"
 }
-
 enum DetailMoviesLocalization {
     static let scoreTextDetailVC = "Score: "
     static let releaseDateTextDetailVC = "Release Date: "
@@ -32,14 +29,12 @@ enum DetailMoviesLocalization {
     static let alertOKDetailVC = "ОК"
     static let addToFavoritesButtonDetailV = "Add To Favorites"
 }
-
 enum FavouriteMoviesLocalization {
     static let favoritesVCTitle = "Favorite Movies"
     static let alertTitleFavoriteVM = "Remove from Favorites"
-    static let alertMessageFavoriteVM = "Do You want to delete "
+    static let alertMessageFavoriteVM = "Do You want to delete"
     static let cancelTitleFavoriteVM = "Cancel"
     static let removeTitleFavoriteVM = "Remove"
-    
 }
 enum SearchMoviesLocalization {
     static let searchVCTitle = "Search the Movie"

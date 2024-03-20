@@ -8,7 +8,6 @@
 import Foundation
 
 struct MovieModel: Codable, Hashable {
-    
     let id: Int
     let title: String?
     let name: String?

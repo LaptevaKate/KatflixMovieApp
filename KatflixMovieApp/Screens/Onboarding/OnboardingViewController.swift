@@ -8,22 +8,24 @@
 import UIKit
 
 final class OnboardingViewController: UIViewController {
+    // MARK: IBOutlets
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet private weak var pageControl: UIPageControl!
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var pageControl: UIPageControl!
-    
+    // MARK: private properties
     private var viewModel = OnboardingViewModel()
-
+    
+    // MARK: VC Lifecycle - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = OnboardingViewModel()
-       
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         pageControl.numberOfPages = viewModel.slides.count
     }
-    
+    // MARK: IBActions
     @IBAction func nextButtonDidTap(_ sender: UIButton) {
         if viewModel.isLastSlide {
             let controller = TabBarViewController.createTabbar()
@@ -38,8 +40,8 @@ final class OnboardingViewController: UIViewController {
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }
-    
-    func setNextButtonTitle() {
+    // MARK: methods
+    private func setNextButtonTitle() {
         pageControl.currentPage = viewModel.currentPage
         if viewModel.isLastSlide {
             nextButton.setTitle(NSLocalizedString("getStartedOnboarding", comment: ""), for: .normal)
@@ -48,7 +50,9 @@ final class OnboardingViewController: UIViewController {
         }
     }
 }
-extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - extension -   UICollectionViewDataSource
+extension OnboardingViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.slides.count
     }
@@ -58,13 +62,18 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.configure(with: model)
         return cell
     }
+}
+
+// MARK: - extension -  UICollectionViewDelegateFlowLayout
+extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
         viewModel.currentPage = Int(scrollView.contentOffset.x / width)
     }
 }
+
+
 

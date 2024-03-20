@@ -8,10 +8,11 @@
 import UIKit
 
 final class TrendingMoviesViewController: UIViewController {
-    
+    // MARK: private properties
     private let trendingViewModel = TrendingViewModel()
-    let trendingTableView = UITableView()
+    private let trendingTableView = UITableView()
     
+    // MARK: VC Lifecycle - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         trendingViewModel.delegate = self
@@ -20,6 +21,7 @@ final class TrendingMoviesViewController: UIViewController {
         applyChangesToSnapshot()
     }
     
+    // MARK: method
     func applyChangesToSnapshot() {
         var snapshot = trendingViewModel.diffableDataSource.snapshot()
         snapshot.reloadItems(self.trendingViewModel.trendingMovies)
@@ -27,7 +29,7 @@ final class TrendingMoviesViewController: UIViewController {
         print("refreshing diff db")
     }
 }
-// MARK: UITableViewDelegate 
+// MARK: - extension -  UITableViewDelegate
 extension TrendingMoviesViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         trendingTableView.deselectRow(at: indexPath, animated: true)
@@ -55,7 +57,7 @@ extension TrendingMoviesViewController : UITableViewDelegate {
     }
 }
 
-// MARK: Delegation
+// MARK: - extension -  TrendingViewModelDelegate
 extension TrendingMoviesViewController: TrendingViewModelDelegate {
     func didFetchMovieDetails() {
     }

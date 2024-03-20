@@ -9,22 +9,23 @@ import UIKit
 import RealmSwift
 
 class SearchMoviesViewModel {
-    
-    let realm = try! Realm()
-    var searchResults: [MovieModel] = []
-    var diffableDataSource : UITableViewDiffableDataSource<Section, MovieModel>!
-    
-    var tableCell = SearchMovieCustomCell()
+    // MARK: private properties
+    private let realm = try! Realm()
+    private var searchResults: [MovieModel] = []
+    private var tableCell = SearchMovieCustomCell()
+    // MARK: properties
     var searchController = UISearchController(searchResultsController: nil)
-    var updatePosterImage: ((UIImage) -> Void)?
-    
-    func applySnapshot() {
+    var diffableDataSource : UITableViewDiffableDataSource<Section, MovieModel>!
+    // MARK: private methods
+    private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, MovieModel>()
         snapshot.appendSections([.search])
         snapshot.appendItems(self.searchResults)
-        diffableDataSource.apply(snapshot, animatingDifferences: true)
+        DispatchQueue.main.async {
+            self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
-    
+    // MARK: methods
     func getSearchResults(query: String, page: Int) {
         let trimmedString = query.replacingOccurrences(of: " ", with: "%20")
         NetworkManager.shared.getSearchResults(query: trimmedString, page: page) { result in

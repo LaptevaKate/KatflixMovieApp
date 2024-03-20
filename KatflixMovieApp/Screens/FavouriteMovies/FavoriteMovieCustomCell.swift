@@ -9,30 +9,27 @@ import UIKit
 
 
 final class FavoriteMovieCustomCell: UITableViewCell {
-    
+    // MARK: private properties
+    private let viewModel = FavoriteMoviesViewModel()
+    // MARK: properties
     var id: Int = -1
     let titleLabel = UILabel()
     let poster = UIImageView()
-    let viewModel = FavoriteMoviesViewModel()
-   
+    // MARK: methods
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureSubviews()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func prepareForReuse() {
         poster.image = nil
     }
@@ -46,13 +43,13 @@ final class FavoriteMovieCustomCell: UITableViewCell {
             }
         }
     }
-
+    // MARK: private methods
     private func configureSubviews() {
         let subviews = [titleLabel, poster]
         subviews.forEach { addSubview($0) }
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        titleLabel.font = .customFont(font: .textFont2, size: .medium)
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .white
         let padding: CGFloat = 10

@@ -9,21 +9,20 @@ import UIKit
 import RealmSwift
 
 final class SearchMoviesViewController: UIViewController {
-    
-    let realm = try! Realm()
-    var searchQuery: String?
-    var searchTableView = UITableView()
+    // MARK: private properties
+    private let realm = try! Realm()
+    private var searchQuery: String?
+    private var searchTableView = UITableView()
     private let searchViewModel = SearchMoviesViewModel()
-
+    // MARK: VC Lifecycle - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         configureSearchController()
     }
 }
-
+// MARK: - extension - UITableViewDelegate
 extension SearchMoviesViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchTableView.deselectRow(at: indexPath, animated: true)
         guard let selectedItem = searchViewModel.diffableDataSource.itemIdentifier(for: indexPath) else { return }
@@ -51,7 +50,7 @@ extension SearchMoviesViewController: UITableViewDelegate {
         view.addSubview(searchTableView)
     }
 }
-
+// MARK: - extension -  UISearchBarDelegate
 extension SearchMoviesViewController:  UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("didEndEditing")
@@ -62,9 +61,8 @@ extension SearchMoviesViewController:  UISearchBarDelegate {
         searchViewModel.getSearchResults(query: searchQuery ?? "", page: 1)
     }
 }
-
+// MARK: - extension -  UISearchResultsUpdating
 extension SearchMoviesViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         self.searchQuery = searchController.searchBar.text ?? ""
     }

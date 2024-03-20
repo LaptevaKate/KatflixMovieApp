@@ -12,10 +12,10 @@ protocol DetailMoviesDelegate : AnyObject {
 }
 
 final class DetailMoviesViewController: UIViewController {
-    
-    weak var delegate: DetailMoviesDelegate?
+    // MARK: private properties
+    private weak var delegate: DetailMoviesDelegate?
     private let movieDetailViewModel = DetailMoviesViewModel()
-    let movieDetailView = MovieDetailView()
+    private let movieDetailView = MovieDetailView()
     
     init(movie: MovieModel) {
         movieDetailViewModel.movie = movie
@@ -25,11 +25,11 @@ final class DetailMoviesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: VC Lifecycle - loadView()
     override func loadView() {
         view = movieDetailView
     }
-    
+    // MARK: VC Lifecycle - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,11 +38,11 @@ final class DetailMoviesViewController: UIViewController {
         movieDetailView.delegate = self
         setViewProperties()
     }
-    
+    // MARK: VC Lifecycle - viewDidAppear()
     override func viewDidAppear(_ animated: Bool) {
         movieDetailView.scrollView.contentSize.height = self.movieDetailView.titleName.bounds.height + self.movieDetailView.overview.bounds.height + self.movieDetailView.addToFavoritesButton.bounds.height + 80
     }
-    
+    // MARK: private methods
     private func setViewProperties() {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
         movieDetailView.overview.text = movieDetailViewModel.movie.overview
@@ -55,21 +55,24 @@ final class DetailMoviesViewController: UIViewController {
     }
     
     private func presentAlert() {
-        let alert = UIAlertController(title: NSLocalizedString("alertTitleDetailVC", comment: ""),
-                                      message: NSLocalizedString("alertMessageDetailVC", comment: ""),
+        let textTitle = NSLocalizedString("alertTitleDetailVC", comment: "")
+        let textMessage = NSLocalizedString("alertMessageDetailVC", comment: "")
+        let okAlertText = NSLocalizedString("alertOKDetailVC", comment: "")
+        let alert = UIAlertController(title: textTitle,
+                                      message: textMessage,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("alertOKDetailVC", comment: ""), 
+        alert.addAction(UIAlertAction(title: okAlertText,
                                       style: UIAlertAction.Style.default,
                                       handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
-
+// MARK: - extension -  DetailMoviesDelegate
 extension DetailMoviesViewController: DetailMoviesDelegate {
-    func updateRealmDataBase() {       
+    func updateRealmDataBase() {
     }
 }
-
+// MARK: - extension -  MovieDetailViewDelegate
 extension DetailMoviesViewController: MovieDetailViewDelegate {
     func didTapFavoriteButton() {
         movieDetailViewModel.didTapAddToFavorites()

@@ -12,16 +12,16 @@ protocol MovieDetailViewDelegate : AnyObject {
     func didTapFavoriteButton()
 }
 
-class MovieDetailView: UIView {
+final class MovieDetailView: UIView {
+    // MARK: properties
     var backdropImage = UIImageView()
     var titleName = UILabel()
     var releaseDate = UILabel()
     var overview = UILabel()
-    var voteAverage = UILabel()
-    let addToFavoritesButton = UIButton()
     let scrollView = UIScrollView()
     let stackView = UIStackView()
-    
+    var voteAverage = UILabel()
+    let addToFavoritesButton = UIButton()
     weak var delegate: MovieDetailViewDelegate!
     
     override init(frame: CGRect) {
@@ -29,15 +29,14 @@ class MovieDetailView: UIView {
         backgroundColor = .black
         configLayout()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: method
     @objc func didTapButton() {
         self.delegate!.didTapFavoriteButton()
     }
-    
+    // MARK: private methods
     private func configLayout() {
         addSubview(stackView)
         stackView.addArrangedSubview(backdropImage)
@@ -97,22 +96,22 @@ class MovieDetailView: UIView {
         
         titleName.numberOfLines = 0
         titleName.lineBreakStrategy = .standard
-        titleName.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        titleName.font = .customFont(font: .titleFont, size: .large)
         titleName.textColor = .white
         
         overview.numberOfLines = 0
         overview.lineBreakStrategy = .standard
-        overview.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        overview.font = .customFont(font: .textFont2, size: .medium)
         overview.textColor = .white
         
         releaseDate.numberOfLines = 1
         releaseDate.textAlignment = .right
-        releaseDate.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        releaseDate.font = .customFont(font: .textFont2, size: .small)
         releaseDate.textColor = .white
         
         voteAverage.numberOfLines = 1
         voteAverage.textAlignment = .left
-        voteAverage.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        voteAverage.font = .customFont(font: .textFont2, size: .small)
         voteAverage.textColor = .white
         
         addToFavoritesButton.setTitle(NSLocalizedString("addToFavoritesButtonDetailV", comment: ""), for: .normal)

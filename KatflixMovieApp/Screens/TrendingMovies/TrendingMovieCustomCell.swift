@@ -9,17 +9,17 @@ import UIKit
 import RealmSwift
 
 final class TrendingMovieCustomCell: UITableViewCell {
-    
-    let realm = try! Realm()
-    
-    let titleLabel = UILabel()
-    let mediaLabel = UILabel()
-    let poster = UIImageView()
+    // MARK: private properties
+    private let realm = try! Realm()
+    private let titleLabel = UILabel()
+    private let mediaLabel = UILabel()
+    private let poster = UIImageView()
+    private let viewModel = TrendingViewModel()
+    // MARK: properties
     let alreadyFavoritedButton = UIButton()
     var voteAverage = UIButton()
     var isAlreadyInFavorites: Bool = true
-    let viewModel = TrendingViewModel()
-
+    // MARK: methods
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -31,7 +31,6 @@ final class TrendingMovieCustomCell: UITableViewCell {
         backgroundColor = .systemBackground
         configureSubviews()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,7 +40,6 @@ final class TrendingMovieCustomCell: UITableViewCell {
         voteAverage.titleLabel?.text = ""
         poster.image = nil
     }
-    
     func configureCell(with model: MovieModel) {
         titleLabel.text = model.title
         mediaLabel.text = model.mediaType?.rawValue
@@ -52,7 +50,7 @@ final class TrendingMovieCustomCell: UITableViewCell {
             }
         }
     }
-    
+    // MARK: private methods
     private func configureSubviews() {
         let subviews = [titleLabel, poster, mediaLabel, voteAverage, alreadyFavoritedButton]
         subviews.forEach { addSubview($0) }
@@ -65,14 +63,14 @@ final class TrendingMovieCustomCell: UITableViewCell {
         titleLabel.textAlignment = .left
         titleLabel.lineBreakStrategy = .standard
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
+        titleLabel.font = .customFont(font: .titleFont, size: .large)
         titleLabel.textColor = .white
         
         mediaLabel.adjustsFontSizeToFitWidth = true
         mediaLabel.textAlignment = .left
         mediaLabel.lineBreakStrategy = .standard
         mediaLabel.numberOfLines = 0
-        mediaLabel.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        mediaLabel.font = .customFont(font: .textFont1, size: .medium)
         mediaLabel.textColor = .white
         
         voteAverage.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -113,6 +111,7 @@ final class TrendingMovieCustomCell: UITableViewCell {
         ])
     }
 }
+// MARK: - extension -  DetailMoviesDelegate
 extension TrendingMovieCustomCell: DetailMoviesDelegate {
     func updateRealmDataBase() {
         alreadyFavoritedButton.isHidden = false

@@ -1,5 +1,5 @@
 //
-//  Enumeration.swift
+//  SectionModelEnum.swift
 //  KatflixMovieApp
 //
 //  Created by Екатерина Лаптева on 4.03.24.

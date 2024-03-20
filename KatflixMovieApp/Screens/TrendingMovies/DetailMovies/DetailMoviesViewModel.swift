@@ -9,11 +9,12 @@ import UIKit
 import RealmSwift
 
 final class DetailMoviesViewModel {
-    
-    let realm = try! Realm()
+    // MARK: private properties
+    private let realm = try! Realm()
+    // MARK: properties
     weak var delegate: DetailMoviesDelegate?
     var movie: MovieModel!
-    
+    // MARK: methods
     func getBackdropFromURL(backdropPath: String, backdropView: UIImageView) {
         NetworkManager.shared.getBackdropImage(backdropPath: backdropPath) { image in
             DispatchQueue.main.async {

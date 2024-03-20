@@ -16,7 +16,6 @@ extension Reusable where Self: UITableViewCell {
 }
 
 extension UITableViewCell: Reusable {}
-
 extension UITableView {
     
     func register<T: UITableViewCell>(_ :T.Type) where T: Reusable {

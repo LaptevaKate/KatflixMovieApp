@@ -8,9 +8,8 @@
 import UIKit
 
 final class OnboardingViewModel {
-    
-    var currentPage = 0 
-
+    // MARK: properties
+    var currentPage = 0
     let slides = [
         OnboardingSlide(title: NSLocalizedString("titleSlide1", comment: ""),
                         description: NSLocalizedString("descriptionSlide1", comment: ""),
@@ -20,12 +19,13 @@ final class OnboardingViewModel {
                         image: UIImage(named: "Slide2")),
         OnboardingSlide(title: NSLocalizedString("titleSlide3", comment: ""),
                         description: NSLocalizedString("descriptionSlide3", comment: " "),
-                        image: UIImage(named: "Slide3"))]
+                        image: UIImage(named: "Slide3"))
+    ]
     
     var isLastSlide: Bool {
         return currentPage == slides.count - 1
     }
-    
+    // MARK: methods
     func moveToNextSlide() {
         currentPage += 1
     }
