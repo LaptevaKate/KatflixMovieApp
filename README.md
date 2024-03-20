@@ -14,7 +14,7 @@ Tmdb api was used in the Network Manager class for getting data. With personal a
 * UIKit
 * Onboarding
 * UICollectionView
-* UITableView
+* UITableView Diffable DataSource 
 * MVVM
 * TabBarViewController
 * Localization(En/Ru)
