@@ -9,7 +9,7 @@ Tmdb api was used in the Network Manager class for getting data. With personal a
 
 ## 🚀 _Technologies_
 
-### _The following tools were used in this project:_
+### 👩‍💻 _The following tools were used in this project:_
 * Swift
 * UIKit
 * Onboarding
