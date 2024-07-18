@@ -114,7 +114,7 @@ final class MovieDetailView: UIView {
         voteAverage.font = .customFont(font: .textFont2, size: .small)
         voteAverage.textColor = .white
         
-        addToFavoritesButton.setTitle(NSLocalizedString("addToFavoritesButtonDetailV", comment: ""), for: .normal)
+        addToFavoritesButton.setTitle(Localization.addToFavoritesButtonDetailVC.localized, for: .normal)
         addToFavoritesButton.backgroundColor = .red
         addToFavoritesButton.layer.cornerRadius = 8
         addToFavoritesButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)

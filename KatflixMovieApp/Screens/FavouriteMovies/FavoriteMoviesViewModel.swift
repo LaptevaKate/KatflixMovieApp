@@ -32,11 +32,10 @@ final class FavoriteMoviesViewModel {
     }
     // MARK: methods
     func didTapFavoriteCell(tappedCell: FavoriteMovieCustomCell, indexPath: IndexPath) -> UIAlertController {
-        let textTitle = NSLocalizedString("alertTitleFavoriteVM", comment: "")
-        let textMessage = NSLocalizedString("alertMessageFavoriteVM", comment: "")
-        let cancelAlertText = NSLocalizedString("cancelTitleFavoriteVM", comment: "")
-        let removeAlertText = NSLocalizedString("removeTitleFavoriteVM", comment: "")
-        
+        let textTitle = Localization.alertTitleFavoriteVM.localized
+        let textMessage = Localization.alertMessageFavoriteVM.localized
+        let cancelAlertText = Localization.cancelTitleFavoriteVM.localized
+        let removeAlertText = Localization.removeTitleFavoriteVM.localized
         let alert = UIAlertController(title: textTitle,
                                       message: textMessage + " " + tappedCell.titleLabel.text! + "?",
                                       preferredStyle: .alert)

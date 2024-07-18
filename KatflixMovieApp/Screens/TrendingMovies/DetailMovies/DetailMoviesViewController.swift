@@ -47,17 +47,17 @@ final class DetailMoviesViewController: UIViewController {
         movieDetailView.titleName.text = movieDetailViewModel.movie.title
         movieDetailView.overview.text = movieDetailViewModel.movie.overview
         guard let movieVote = movieDetailViewModel.movie.voteAverage else {return }
-        movieDetailView.voteAverage.text = NSLocalizedString("scoreTextDetailVC", comment: "") + String(movieVote)
+        movieDetailView.voteAverage.text = Localization.scoreTextDetailVC.localized + String(movieVote)
         guard let movieReleaseDate = movieDetailViewModel.movie.releaseDate else {return }
-        movieDetailView.releaseDate.text = NSLocalizedString("releaseDateTextDetailVC", comment: "") + movieReleaseDate
+        movieDetailView.releaseDate.text = Localization.releaseDateTextDetailVC.localized + movieReleaseDate
         guard let movieBackdropPath = movieDetailViewModel.movie.backdropPath else {return }
         movieDetailViewModel.getBackdropFromURL(backdropPath: movieBackdropPath, backdropView: movieDetailView.backdropImage)
     }
     
     private func presentAlert() {
-        let textTitle = NSLocalizedString("alertTitleDetailVC", comment: "")
-        let textMessage = NSLocalizedString("alertMessageDetailVC", comment: "")
-        let okAlertText = NSLocalizedString("alertOKDetailVC", comment: "")
+        let textTitle = Localization.alertTitleDetailVC.localized
+        let textMessage = Localization.alertMessageDetailVC.localized
+        let okAlertText = Localization.alertOKDetailVC.localized
         let alert = UIAlertController(title: textTitle,
                                       message: textMessage,
                                       preferredStyle: .alert)

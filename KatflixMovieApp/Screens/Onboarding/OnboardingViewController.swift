@@ -44,9 +44,9 @@ final class OnboardingViewController: UIViewController {
     private func setNextButtonTitle() {
         pageControl.currentPage = viewModel.currentPage
         if viewModel.isLastSlide {
-            nextButton.setTitle(NSLocalizedString("getStartedOnboarding", comment: ""), for: .normal)
+            nextButton.setTitle(Localization.getStartedOnboarding.localized, for: .normal)
         } else {
-            nextButton.setTitle(NSLocalizedString("nextButtonOnboarding", comment: ""), for: .normal)
+            nextButton.setTitle(Localization.nextButtonOnboarding.localized, for: .normal)
         }
     }
 }

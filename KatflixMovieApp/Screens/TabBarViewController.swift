@@ -11,7 +11,7 @@ final class TabBarViewController: UIViewController {
     
     static func createTrendingNavigationController() -> UINavigationController {
         let trendingVC = TrendingMoviesViewController()
-        let localizedString = NSLocalizedString("trendingVCTitle", comment: "")
+        let localizedString = Localization.trendingVCTitle.localized
         trendingVC.title = localizedString
         trendingVC.tabBarItem = UITabBarItem(title: trendingVC.title, image: UIImage(systemName: "film.fill") , tag: 0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red]
@@ -21,7 +21,7 @@ final class TabBarViewController: UIViewController {
     
     static func createFavoritesNavigationController() -> UINavigationController {
         let favoritesVC = FavoriteMoviesViewController()
-        let localizedString = NSLocalizedString("favoritesVCTitle", comment: "")
+        let localizedString = Localization.favoritesVCTitle.localized
         favoritesVC.title = localizedString
         favoritesVC.tabBarItem = UITabBarItem(title: favoritesVC.title, image: UIImage(systemName: "heart.fill") , tag: 0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red]
@@ -31,7 +31,7 @@ final class TabBarViewController: UIViewController {
     
     static func createSearchNavigationController() -> UINavigationController {
         let searchVC = SearchMoviesViewController()
-        let localizedString = NSLocalizedString("searchVCTitle", comment: "")
+        let localizedString = Localization.searchVCTitle.localized 
         searchVC.title = localizedString
         searchVC.tabBarItem = UITabBarItem(title: searchVC.title, image: UIImage(systemName: "magnifyingglass"), tag: 0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red]

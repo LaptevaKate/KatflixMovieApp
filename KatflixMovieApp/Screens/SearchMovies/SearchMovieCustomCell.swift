@@ -67,7 +67,7 @@ final class SearchMovieCustomCell: UITableViewCell {
         btnConfig.baseForegroundColor = UIColor.systemPink
         btnConfig.buttonSize = .mini
         btnConfig.contentInsets = .zero
-        btnConfig.title = NSLocalizedString("btnTitleTrendingCell", comment: "")
+        btnConfig.title = Localization.btnTitleTrendingCell.localized
         alreadyFavoritedButton.configuration = btnConfig
         
         let padding: CGFloat = 10

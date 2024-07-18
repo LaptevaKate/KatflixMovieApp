@@ -1,7 +1,8 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "addToFavoritesButtonDetailV" : {
+    "addToFavoritesButtonDetailVC" : {
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
